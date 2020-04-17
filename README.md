@@ -9,7 +9,7 @@ A mobile game where you play as Space Mold, a happy multicellular structure floa
 
 ## Authors
 
-* **Kevin Haston** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Kevin Haston**
 
 ## License
 

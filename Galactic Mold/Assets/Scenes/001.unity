@@ -2266,10 +2266,10 @@ MonoBehaviour:
   musicOn: 1
   soundOn: 1
   volume: 1
-  moldsUnlocked: 01000000
-  debrisUnlocked: 0000000000000000000000
-  compoundDebrisUnlocked: 0000000000000000000000
-  componentsUnlocked: 000000000000
+  moldsUnlocked: 01010101
+  debrisUnlocked: 0101010101010101010101
+  compoundDebrisUnlocked: 0101010101010101010101
+  componentsUnlocked: 010101010101
 --- !u!4 &1412692600
 Transform:
   m_ObjectHideFlags: 0

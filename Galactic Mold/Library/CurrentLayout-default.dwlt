@@ -46,7 +46,7 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 997
-  m_MinSize: {x: 875, y: 300}
+  m_MinSize: {x: 875, y: 492}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &3
 MonoBehaviour:
@@ -117,7 +117,7 @@ MonoBehaviour:
   m_MinSize: {x: 909, y: 442}
   m_MaxSize: {x: 22004, y: 10021}
   vertical: 0
-  controlID: 80
+  controlID: 328
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_MinSize: {x: 201, y: 442}
   m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
-  controlID: 16
+  controlID: 349
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -162,8 +162,8 @@ MonoBehaviour:
     y: 0
     width: 804
     height: 444
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -214,8 +214,8 @@ MonoBehaviour:
     y: 0
     width: 232
     height: 947
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -271,7 +271,7 @@ MonoBehaviour:
   m_MinSize: {x: 276, y: 192}
   m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
-  controlID: 130
+  controlID: 323
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -291,8 +291,8 @@ MonoBehaviour:
     y: 0
     width: 553
     height: 752
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -356,15 +356,15 @@ MonoBehaviour:
   m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 803, y: 452}
+  m_TargetSize: {x: 803, y: 402}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
-  m_MaximizeOnPlay: 0
+  m_MaximizeOnPlay: 1
   m_VSyncEnabled: 0
   m_Gizmos: 0
   m_Stats: 0
-  m_SelectedSizes: 0000000000000000000000000e000000000000000000000000000000000000000000000000000000
+  m_SelectedSizes: 00000000000000000000000010000000000000000000000000000000000000000000000000000000
   m_ZoomArea:
     m_HRangeLocked: 0
     m_VRangeLocked: 0
@@ -372,8 +372,8 @@ MonoBehaviour:
     vZoomLockedByDefault: 0
     m_HBaseRangeMin: -401.5
     m_HBaseRangeMax: 401.5
-    m_VBaseRangeMin: -226
-    m_VBaseRangeMax: 226
+    m_VBaseRangeMin: -201
+    m_VBaseRangeMax: 201
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -449,9 +449,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -2.4950066, y: -0.15415731, z: -8.751953}
+    m_Target: {x: -0.69099426, y: 0.0035010017, z: -8.939453}
     speed: 2
-    m_Value: {x: -2.4950066, y: -0.15415731, z: -8.751953}
+    m_Value: {x: -0.69099426, y: 0.0035010017, z: -8.939453}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -501,9 +501,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 11.394747
+    m_Target: 9.05152
     speed: 2
-    m_Value: 11.394747
+    m_Value: 9.05152
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -559,7 +559,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: e243fffffa43ffff9644ffff2e45ffff5646ffffe846fffff047ffff5c48ffff7448ffff2c49ffff6e4fffff5c50ffff6251ffff7c54ffff8a54ffff1c55ffff0856ffffd660ffffda66fffff469ffffe06affff0e6bffffc06bffffa0b1ffffeac1ffff6cc4ffffb0cbffffdad1ffffc2f8ffff5af9ffff6cf9ffff8cfaffff32fbffff263f0000146e0000ae6e000032700000c8900000709200004a930000a09a000026ac0000cead0000a8ae000030bc0000f8bd0000d2be000048d1000022d2000060d200009ade000074df0000b2df0000beed000098ee0000d6ee000034f400004cf40000
+      m_ExpandedIDs: 6efbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -622,11 +622,11 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/ArtWork/BackGrounds
+    - Assets/Audio
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/ArtWork/BackGrounds
+  - Assets/Audio
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\kevoh\Unity Projects\SpaceMoldMobile\SpaceMoldMobile\Galactic
     Mold
@@ -634,23 +634,23 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 22360000
-    m_LastClickedID: 13858
-    m_ExpandedIDs: 000000001e3600002036000022360000263600004a3600004c3600004e3600005836000000ca9a3b
+    m_SelectedIDs: 14360000
+    m_LastClickedID: 13844
+    m_ExpandedIDs: 00000000f2350000f4350000f6350000f8350000fa350000fc350000fe35000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: scenes
-      m_OriginalName: scenes
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 13906
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 4
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 10}
     m_SearchString: 
@@ -664,7 +664,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000001e3600002036000022360000
+    m_ExpandedIDs: 00000000f2350000f4350000f6350000f8350000fa350000fc350000fe35000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -691,8 +691,8 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: 183c0000fc2e000000000000e631000042310000f21601004a7b0000943800008a350000e483feff0a360000362e000014360000942f00008c260100fa53010052340000de440000ae440000d6440000f093ffffe0350000
+    m_HadKeyboardFocusLastEvent: 0
+    m_ExpandedInstanceIDs: 183c0000fc2e000000000000e631000042310000f21601004a7b0000943800008a350000e483feff0a360000362e000014360000942f00008c260100fa53010052340000de440000ae440000d6440000f093ffffe035000044380000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

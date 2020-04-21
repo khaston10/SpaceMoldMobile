@@ -26,6 +26,7 @@ public class RecipeController : MonoBehaviour
 
     #region Variables Dictionary Of Materials
     Dictionary<string, string> Materials = new Dictionary<string, string>();
+    public Sprite[] MaterialIcons;
     #endregion
 
     // Start is called before the first frame update

@@ -23,8 +23,8 @@ public class CutSceneController : MonoBehaviour
         timer += Time.deltaTime;
 
         
-        if (timer > 10) BackGroundImage.sprite = backgrounds[1];
-        if (timer > 20) BackGroundImage.sprite = backgrounds[2];
-        if (timer > 30) SceneManager.LoadScene(2);
+        if (timer > 2) BackGroundImage.sprite = backgrounds[1];
+        if (timer > 4) BackGroundImage.sprite = backgrounds[2];
+        if (timer > 6) SceneManager.LoadScene(2);
     }
 }

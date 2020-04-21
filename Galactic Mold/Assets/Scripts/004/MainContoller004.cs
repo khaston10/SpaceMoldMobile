@@ -26,16 +26,35 @@ public class MainContoller004 : MonoBehaviour
     public Slider volumeSlider;
     #endregion
 
-    #region Variables
+    #region Variables Panels
+    public GameObject startOfDayPanel;
+    public GameObject buttonPanel;
     public GameObject SettingsPanel;
+    public GameObject informationPanel;
     public GameObject recipePanel;
+    #endregion
+
+    #region Variables Button Panel Buttons
+
+    public int firstSelection;
+    public int secondSelection;
+    public Image[] buttonPanelImages;
+    public Sprite[] debrisSprites;
+    public Sprite spaceMoldIcon;
+    #endregion
+
+    #region Variables
+
     #endregion
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Load();
+
+        // At start we need to load random availiable debris
+        LoadButtonImagesAtStartOfDay();
     }
 
     // Update is called once per frame
@@ -124,6 +143,84 @@ public class MainContoller004 : MonoBehaviour
         if (turnOn) recipePanel.SetActive(true);
         else recipePanel.SetActive(false);
     }
+
+    public void ClickStartOfDay()
+    {
+        // Hide start of day panel and show button panel.
+        startOfDayPanel.SetActive(false);
+        buttonPanel.SetActive(true);
+        informationPanel.SetActive(true);
+        recipePanel.GetComponent<RecipeController>().SetButtonsActiveOnStart();
+    }
+
+    #region Functions Button Panel
+
+    public void PushSelectButton(int button)
+    {
+        // Check to see if first selection has been assigned.
+        if (firstSelection == 55) 
+        {
+            firstSelection = button;
+            Debug.Log("First Selection Set To: " + firstSelection.ToString());
+        }
+        else if (secondSelection == 55)
+        {
+            secondSelection = button;
+            Debug.Log("Second Selection Set To: " + secondSelection.ToString());
+
+            // Check to see if the 2 buttons are next to eachother. If not, reset buttons.
+            if (Mathf.Abs(firstSelection - secondSelection) == 1 || Mathf.Abs(firstSelection - secondSelection) == 10)
+            {
+                Debug.Log("Buttons are next to eachother!");
+            }
+
+            else
+            {
+                Debug.Log("Dummy! Buttons are not next to eachother!");
+            }
+
+            // Reset buttons.
+            firstSelection = 55;
+            secondSelection = 55;
+        }
+
+        else
+        {
+            Debug.Log("No More Space");
+        }
+    }
+
+    public void LoadButtonImagesAtStartOfDay()
+    {
+        // 1. Grab a random debris type or mold.
+        // 2. Check to see if it is unlocked.
+        // 3. Load it into the next button.
+        int buttonsLeftToAssign = 16;
+
+        while (buttonsLeftToAssign > 0)
+        {
+
+            int tempSprite = Random.Range(0, 11);
+            if (debrisUnlocked[tempSprite])
+            {
+                buttonPanelImages[buttonsLeftToAssign - 1].sprite = debrisSprites[tempSprite];
+                buttonsLeftToAssign -= 1;
+            }
+        }
+
+        // 4. pick four buttons to replace the images with space mold.
+        for (int i = 0; i < 4; i++)
+        {
+            int randButtonImage = Random.Range(0, 15);
+            buttonPanelImages[randButtonImage].sprite = spaceMoldIcon;
+        }
+        
+        
+
+        
+    }
+
+    #endregion
 
     #endregion
 

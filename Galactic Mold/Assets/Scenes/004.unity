@@ -3111,7 +3111,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 459759084}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 284202650}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1288927440}
+        m_MethodName: LoadButtonImagesAtStartOfDay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &459759084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5375,7 +5397,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 182ff727f005abe46a7a211c8235e69f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ec44056095d7f834883cb72422c6db43, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6854,6 +6876,33 @@ MonoBehaviour:
   - {fileID: 21300002, guid: 5b662844ab2574a4581238ffe0047880, type: 3}
   - {fileID: 21300002, guid: 5b662844ab2574a4581238ffe0047880, type: 3}
   - {fileID: 21300002, guid: 5b662844ab2574a4581238ffe0047880, type: 3}
+  materialArrayForSearching:
+  - COSMIC DUST
+  - RADIATION
+  - STRANGE GOO
+  - ICE
+  - EMPTY ROCKET ENGINE
+  - BATTERY
+  - ANTENNA
+  - LENS
+  - SOLAR PANEL
+  - SATELLITE DISH
+  - PROPELLER
+  - RADIATED DUST
+  - ACID
+  - FROZEN GOO
+  - LASER
+  - MOUNTABLE SPIKE
+  - MOUNTABLE DISH
+  - MOUNTABLE LENS
+  - GLASSES
+  - RECHARGEABLE BATTERY
+  - ACTIVE ROCKET ENGINE
+  - MOUNTABLE PROPELLER
+  - SPACE MOLD
+  - HEAT RESISTANT MOLD
+  - ELECTRIC MOLD
+  - POISON MOLD
 --- !u!114 &1013903378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8465,6 +8514,7 @@ MonoBehaviour:
   recipePanel: {fileID: 1013903375}
   firstSelection: 55
   secondSelection: 55
+  blank: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
   buttonPanelImages:
   - {fileID: 1033785267}
   - {fileID: 752804168}
@@ -8483,18 +8533,33 @@ MonoBehaviour:
   - {fileID: 1923402220}
   - {fileID: 318606633}
   debrisSprites:
-  - {fileID: 21300000, guid: 182ff727f005abe46a7a211c8235e69f, type: 3}
-  - {fileID: 21300004, guid: 6b7451482a64ecf43a6c0069c99c84f4, type: 3}
-  - {fileID: 21300000, guid: fd7d9d28c71099740bff005c4e3744fa, type: 3}
+  - {fileID: 21300000, guid: ec44056095d7f834883cb72422c6db43, type: 3}
+  - {fileID: 21300000, guid: d0bced9e48370b742a8bb614cad06375, type: 3}
+  - {fileID: 21300000, guid: 53e4d2b9e3d6a41459d408faea9bda8d, type: 3}
   - {fileID: 21300000, guid: 7a6e0947de3300c4f89bdce898b6a388, type: 3}
-  - {fileID: 21300000, guid: bbf04caa2264f3d4b8ddf641cf962da9, type: 3}
-  - {fileID: 21300000, guid: 617d892fd22377941a3b904e4b7b0392, type: 3}
+  - {fileID: 21300000, guid: d452675bb07cb2c4e80d22d50aad7155, type: 3}
+  - {fileID: 21300000, guid: 301932a3eaa368a47918ba094b23d033, type: 3}
   - {fileID: 21300000, guid: 27294e09608f26847a4a287e4097c37b, type: 3}
   - {fileID: 21300008, guid: 0cf9ad425bac04349a2c2dbeb480b487, type: 3}
   - {fileID: 21300004, guid: ad2a120f16668f344bab410d41def05a, type: 3}
   - {fileID: 21300000, guid: 368a21568906a45439d05450fe4bc151, type: 3}
   - {fileID: 21300004, guid: 0cf9ad425bac04349a2c2dbeb480b487, type: 3}
-  spaceMoldIcon: {fileID: 21300000, guid: 560a50b509e64a14daa4647f97945854, type: 3}
+  - {fileID: 21300004, guid: 0cf9ad425bac04349a2c2dbeb480b487, type: 3}
+  - {fileID: 21300000, guid: 6fca1815e137c7749b36bdad01c06ee3, type: 3}
+  - {fileID: 21300000, guid: 6e849b3ebafa9df4480ab73c08394ce8, type: 3}
+  - {fileID: 21300000, guid: ae35cea79647f05489a07bbf4001c03c, type: 3}
+  - {fileID: 21300004, guid: 0cf9ad425bac04349a2c2dbeb480b487, type: 3}
+  - {fileID: 21300004, guid: 0cf9ad425bac04349a2c2dbeb480b487, type: 3}
+  - {fileID: 21300004, guid: 0cf9ad425bac04349a2c2dbeb480b487, type: 3}
+  - {fileID: 21300004, guid: 0cf9ad425bac04349a2c2dbeb480b487, type: 3}
+  - {fileID: 21300004, guid: 0cf9ad425bac04349a2c2dbeb480b487, type: 3}
+  - {fileID: 21300004, guid: 0cf9ad425bac04349a2c2dbeb480b487, type: 3}
+  - {fileID: 21300004, guid: 0cf9ad425bac04349a2c2dbeb480b487, type: 3}
+  - {fileID: 21300004, guid: 0cf9ad425bac04349a2c2dbeb480b487, type: 3}
+  - {fileID: 21300004, guid: 0cf9ad425bac04349a2c2dbeb480b487, type: 3}
+  - {fileID: 21300004, guid: 0cf9ad425bac04349a2c2dbeb480b487, type: 3}
+  - {fileID: 21300004, guid: 0cf9ad425bac04349a2c2dbeb480b487, type: 3}
+  spaceMoldIcon: {fileID: 21300000, guid: 8fddef077b02afb498c7162d6502f0db, type: 3}
 --- !u!4 &1288927442
 Transform:
   m_ObjectHideFlags: 0

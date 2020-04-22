@@ -38,6 +38,7 @@ public class MainContoller004 : MonoBehaviour
 
     public int firstSelection;
     public int secondSelection;
+    public Sprite blank;
     public Image[] buttonPanelImages;
     public Sprite[] debrisSprites;
     public Sprite spaceMoldIcon;
@@ -161,22 +162,43 @@ public class MainContoller004 : MonoBehaviour
         if (firstSelection == 55) 
         {
             firstSelection = button;
-            Debug.Log("First Selection Set To: " + firstSelection.ToString());
+            //Debug.Log("First Selection Set To: " + firstSelection.ToString());
         }
         else if (secondSelection == 55)
         {
             secondSelection = button;
-            Debug.Log("Second Selection Set To: " + secondSelection.ToString());
+            //Debug.Log("Second Selection Set To: " + secondSelection.ToString());
 
             // Check to see if the 2 buttons are next to eachother. If not, reset buttons.
             if (Mathf.Abs(firstSelection - secondSelection) == 1 || Mathf.Abs(firstSelection - secondSelection) == 10)
             {
-                Debug.Log("Buttons are next to eachother!");
+                //Debug.Log("Buttons are next to eachother!");
+                Debug.Log(GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name));
+
+                // Place the image of the returned sprite on the second selection.
+                if (GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name) == "NA")
+                {
+                    GetButtonImageOnGamePanel(secondSelection).sprite = blank;
+                }
+
+                else 
+                {
+                    int temp = System.Array.IndexOf(recipePanel.GetComponent<RecipeController>().materialArrayForSearching, GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name));
+                    GetButtonImageOnGamePanel(secondSelection).sprite = debrisSprites[temp + 1];
+                } 
+
+                // Replace the image for first selection as black.
+                GetButtonImageOnGamePanel(firstSelection).sprite = blank;
+
+                // Reset selections.
+                firstSelection = 55;
+                secondSelection = 55;
+                
             }
 
             else
             {
-                Debug.Log("Dummy! Buttons are not next to eachother!");
+                //Debug.Log("Dummy! Buttons are not next to eachother!");
             }
 
             // Reset buttons.
@@ -188,6 +210,24 @@ public class MainContoller004 : MonoBehaviour
         {
             Debug.Log("No More Space");
         }
+    }
+
+    public Image GetButtonImageOnGamePanel(int buttonCode)
+    {
+        // Because of the strange numbering system for the buttons.
+        // 00, 01, 02, 03
+        // 10, 11, 12, 13
+        // 20, 21, 22, 23
+        // 30, 31, 32, 33
+        // We will deal with this in 4 seperate cases.
+
+        // Get last digit.
+        int lastDigit = buttonCode % 10;
+
+        if (buttonCode < 10) return buttonPanelImages[lastDigit];
+        else if (buttonCode < 20) return buttonPanelImages[lastDigit + 4];
+        else if (buttonCode < 30) return buttonPanelImages[lastDigit + 8];
+        else return buttonPanelImages[lastDigit + 12];
     }
 
     public void LoadButtonImagesAtStartOfDay()
@@ -214,10 +254,14 @@ public class MainContoller004 : MonoBehaviour
             int randButtonImage = Random.Range(0, 15);
             buttonPanelImages[randButtonImage].sprite = spaceMoldIcon;
         }
-        
-        
+  
+    }
 
-        
+    public string GetCombinationResult(string material1, string material2)
+    {
+        int tempIndex1 = System.Array.IndexOf(recipePanel.GetComponent<RecipeController>().materialArrayForSearching, material1);
+        int tempIndex2 = System.Array.IndexOf(recipePanel.GetComponent<RecipeController>().materialArrayForSearching, material2);
+        return recipePanel.GetComponent<RecipeController>().materialsCombinationArray[tempIndex1 + 1, tempIndex2 + 1];
     }
 
     #endregion

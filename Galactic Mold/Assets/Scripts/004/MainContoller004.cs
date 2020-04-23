@@ -184,7 +184,7 @@ public class MainContoller004 : MonoBehaviour
                 else 
                 {
                     int temp = System.Array.IndexOf(recipePanel.GetComponent<RecipeController>().materialArrayForSearching, GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name));
-                    GetButtonImageOnGamePanel(secondSelection).sprite = debrisSprites[temp + 1];
+                    GetButtonImageOnGamePanel(secondSelection).sprite = debrisSprites[temp];
                 } 
 
                 // Replace the image for first selection as black.

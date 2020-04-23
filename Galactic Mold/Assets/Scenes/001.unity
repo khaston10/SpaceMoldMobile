@@ -1807,8 +1807,8 @@ MonoBehaviour:
   soundOn: 0
   volume: 0
   moldsUnlocked: 00000000
-  debrisUnlocked: 0000000000000000000000
-  compoundDebrisUnlocked: 0000000000000000000000
+  debrisUnlocked: 0101010101010101010101
+  compoundDebrisUnlocked: 0101010101010101010101
   componentsUnlocked: 000000000000
   mainMusic: {fileID: 857766840}
   click1Good: {fileID: 284202650}
@@ -2266,9 +2266,9 @@ MonoBehaviour:
   musicOn: 1
   soundOn: 1
   volume: 1
-  moldsUnlocked: 01000000
-  debrisUnlocked: 0101010100000000000000
-  compoundDebrisUnlocked: 0101010101010100000000
+  moldsUnlocked: 01010101
+  debrisUnlocked: 0101010101010101010101
+  compoundDebrisUnlocked: 0101010101010101010101
   componentsUnlocked: 000000000000
 --- !u!4 &1412692600
 Transform:

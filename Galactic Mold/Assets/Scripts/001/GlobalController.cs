@@ -9,6 +9,7 @@ public class GlobalController : MonoBehaviour
     public bool musicOn;
     public bool soundOn;
     public float volume;
+    public int day;
 
     public bool[] moldsUnlocked = new bool[4];
     public bool[] debrisUnlocked = new bool[11];

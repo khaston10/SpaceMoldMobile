@@ -1806,6 +1806,7 @@ MonoBehaviour:
   musicOn: 0
   soundOn: 0
   volume: 0
+  day: 0
   moldsUnlocked: 00000000
   debrisUnlocked: 0101010101010101010101
   compoundDebrisUnlocked: 0101010101010101010101
@@ -2265,7 +2266,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicOn: 1
   soundOn: 1
-  volume: 1
+  volume: 0
+  day: 10
   moldsUnlocked: 01010101
   debrisUnlocked: 0101010101010101010101
   compoundDebrisUnlocked: 0101010101010101010101

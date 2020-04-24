@@ -11,11 +11,13 @@ public class MainContoller004 : MonoBehaviour
     public bool musicOn;
     public bool soundOn;
     public float volume;
+    public int day;
 
     public bool[] moldsUnlocked = new bool[4];
     public bool[] debrisUnlocked = new bool[11];
     public bool[] compoundDebrisUnlocked = new bool[11];
     public bool[] componentsUnlocked = new bool[6];
+
 
     #endregion
 
@@ -24,14 +26,17 @@ public class MainContoller004 : MonoBehaviour
     public AudioSource click1Good;
     public AudioMixer mainMixer;
     public Slider volumeSlider;
+    public Toggle musicToggle;
+    public Toggle soundToggle;
     #endregion
 
-    #region Variables Panels
+    #region Variables Panels - text
     public GameObject startOfDayPanel;
     public GameObject buttonPanel;
     public GameObject SettingsPanel;
     public GameObject informationPanel;
     public GameObject recipePanel;
+    public Text dayText;
     #endregion
 
     #region Variables Button Panel Buttons
@@ -54,8 +59,17 @@ public class MainContoller004 : MonoBehaviour
     {
         Load();
 
+        // Set text objects.
+        UpdateTextObjects();
+
         // At start we need to load random availiable debris
         LoadButtonImagesAtStartOfDay();
+
+        // Set Volume Slider to initial volume and toggles.
+        volumeSlider.value = volume;
+        mainMixer.SetFloat("MainVolume", volume);
+        SetTogglesOnStart();
+
     }
 
     // Update is called once per frame
@@ -70,6 +84,8 @@ public class MainContoller004 : MonoBehaviour
     {
         musicOn = GlobalController.Instance.musicOn;
         soundOn = GlobalController.Instance.soundOn;
+        volume = GlobalController.Instance.volume;
+        day = GlobalController.Instance.day;
         moldsUnlocked = GlobalController.Instance.moldsUnlocked;
         debrisUnlocked = GlobalController.Instance.debrisUnlocked;
         compoundDebrisUnlocked = GlobalController.Instance.compoundDebrisUnlocked;
@@ -80,6 +96,8 @@ public class MainContoller004 : MonoBehaviour
     {
         GlobalController.Instance.musicOn = musicOn;
         GlobalController.Instance.soundOn = soundOn;
+        GlobalController.Instance.volume = volume;
+        GlobalController.Instance.day = day;
         GlobalController.Instance.moldsUnlocked = moldsUnlocked;
         GlobalController.Instance.debrisUnlocked = debrisUnlocked;
         GlobalController.Instance.compoundDebrisUnlocked = compoundDebrisUnlocked;
@@ -99,9 +117,15 @@ public class MainContoller004 : MonoBehaviour
         SettingsPanel.SetActive(false);
     }
 
+    public void SetTogglesOnStart()
+    {
+        if (musicOn == false) musicToggle.isOn = false;
+        if (soundOn == false) soundToggle.isOn = false;
+    }
+
     public void ToggleMusic()
     {
-        if (musicOn)
+        if (musicToggle.isOn == false)
         {
             musicOn = false;
             mainMusic.volume = 0f;
@@ -111,12 +135,11 @@ public class MainContoller004 : MonoBehaviour
             musicOn = true;
             mainMusic.volume = 1f;
         }
-
     }
 
     public void ToggleSound()
     {
-        if (soundOn)
+        if (soundToggle.isOn == false)
         {
             soundOn = false;
             click1Good.volume = 0f;
@@ -139,6 +162,11 @@ public class MainContoller004 : MonoBehaviour
 
     #region Functions - Various
 
+    public void UpdateTextObjects()
+    {
+        dayText.text = day.ToString();
+    }
+
     public void ClickRecipeBook(bool turnOn)
     {
         if (turnOn) recipePanel.SetActive(true);
@@ -152,6 +180,17 @@ public class MainContoller004 : MonoBehaviour
         buttonPanel.SetActive(true);
         informationPanel.SetActive(true);
         recipePanel.GetComponent<RecipeController>().SetButtonsActiveOnStart();
+    }
+
+    public void ClickEndOfDay()
+    {
+        // Set Day and close/open panels.
+        day -= 1;
+        UpdateTextObjects();
+        buttonPanel.SetActive(false);
+        startOfDayPanel.SetActive(true);
+        informationPanel.SetActive(false);
+        
     }
 
     #region Functions Button Panel

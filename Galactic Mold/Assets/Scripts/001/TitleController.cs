@@ -11,6 +11,7 @@ public class TitleController : MonoBehaviour
     public bool musicOn;
     public bool soundOn;
     public float volume;
+    public int day;
 
     public bool[] moldsUnlocked = new bool[4];
     public bool[] debrisUnlocked = new bool[11];
@@ -42,16 +43,21 @@ public class TitleController : MonoBehaviour
     {
         musicOn = GlobalController.Instance.musicOn;
         soundOn = GlobalController.Instance.soundOn;
+        volume = GlobalController.Instance.volume;
+        day = GlobalController.Instance.day;
         moldsUnlocked = GlobalController.Instance.moldsUnlocked;
         debrisUnlocked = GlobalController.Instance.debrisUnlocked;
         compoundDebrisUnlocked = GlobalController.Instance.compoundDebrisUnlocked;
         componentsUnlocked = GlobalController.Instance.componentsUnlocked;
+
     }
 
     public void Save()
     {
         GlobalController.Instance.musicOn = musicOn;
         GlobalController.Instance.soundOn = soundOn;
+        GlobalController.Instance.volume = volume;
+        GlobalController.Instance.day = day;
         GlobalController.Instance.moldsUnlocked = moldsUnlocked;
         GlobalController.Instance.debrisUnlocked = debrisUnlocked;
         GlobalController.Instance.compoundDebrisUnlocked = compoundDebrisUnlocked;

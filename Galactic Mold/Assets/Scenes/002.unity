@@ -711,6 +711,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a42cbc25ceff3e94d9d4a497bee7f445, type: 3}
   - {fileID: 21300000, guid: e3b9af558218bc94b8008deeff2b75d9, type: 3}
   - {fileID: 21300000, guid: 52cac552c4440124b9c548040ed2cc9a, type: 3}
+  mainMixer: {fileID: 24100000, guid: 2abcbf08ff5c39642829c70bb841c715, type: 2}
+  music: {fileID: 857766840}
+  clickGood1: {fileID: 284202650}
+  volume: 0
+  soundOn: 1
+  musicOn: 1
   timer: 0
 --- !u!4 &1288927442
 Transform:

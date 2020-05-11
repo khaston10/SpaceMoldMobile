@@ -1,7 +1,9 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - CutSceneContoller005
     - CutSceneController
+    - EndScreenController
     - GlobalController
     - MainContoller004
     - RecipeController
@@ -51,27 +53,27 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11174}
+      Script: {instanceID: 11176}
     - Class: 114
-      Script: {instanceID: 11346}
+      Script: {instanceID: 11348}
     - Class: 114
-      Script: {instanceID: 11386}
+      Script: {instanceID: 11388}
     - Class: 114
-      Script: {instanceID: 11598}
+      Script: {instanceID: 11600}
     - Class: 114
-      Script: {instanceID: 11622}
+      Script: {instanceID: 11624}
     - Class: 114
-      Script: {instanceID: 11842}
+      Script: {instanceID: 11844}
     - Class: 114
-      Script: {instanceID: 12282}
+      Script: {instanceID: 12284}
     - Class: 114
-      Script: {instanceID: 12816}
+      Script: {instanceID: 12818}
     - Class: 114
-      Script: {instanceID: 13216}
+      Script: {instanceID: 13218}
     - Class: 114
-      Script: {instanceID: 13232}
+      Script: {instanceID: 13234}
     - Class: 114
-      Script: {instanceID: 13250}
+      Script: {instanceID: 13252}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -118,19 +120,21 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11174}
+      Script: {instanceID: 11176}
     - Class: 114
-      Script: {instanceID: 11346}
+      Script: {instanceID: 11348}
     - Class: 114
-      Script: {instanceID: 11386}
+      Script: {instanceID: 11388}
     - Class: 114
-      Script: {instanceID: 11842}
+      Script: {instanceID: 11844}
     - Class: 114
-      Script: {instanceID: 12816}
+      Script: {instanceID: 12284}
     - Class: 114
-      Script: {instanceID: 13216}
+      Script: {instanceID: 12818}
     - Class: 114
-      Script: {instanceID: 13236}
+      Script: {instanceID: 13218}
+    - Class: 114
+      Script: {instanceID: 13238}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -175,29 +179,151 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11174}
+      Script: {instanceID: 11176}
     - Class: 114
-      Script: {instanceID: 11346}
+      Script: {instanceID: 11348}
     - Class: 114
-      Script: {instanceID: 11386}
+      Script: {instanceID: 11388}
     - Class: 114
-      Script: {instanceID: 11622}
+      Script: {instanceID: 11624}
     - Class: 114
-      Script: {instanceID: 11842}
+      Script: {instanceID: 11844}
     - Class: 114
-      Script: {instanceID: 12134}
+      Script: {instanceID: 12136}
     - Class: 114
-      Script: {instanceID: 12282}
+      Script: {instanceID: 12284}
     - Class: 114
-      Script: {instanceID: 12486}
+      Script: {instanceID: 12488}
     - Class: 114
-      Script: {instanceID: 12816}
+      Script: {instanceID: 12818}
     - Class: 114
-      Script: {instanceID: 13216}
+      Script: {instanceID: 13218}
     - Class: 114
-      Script: {instanceID: 13232}
+      Script: {instanceID: 13234}
     - Class: 114
-      Script: {instanceID: 13250}
+      Script: {instanceID: 13252}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    - Class: 241
+      Script: {instanceID: 0}
+    - Class: 243
+      Script: {instanceID: 0}
+    - Class: 245
+      Script: {instanceID: 0}
+    Assets/Scenes/005.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 11176}
+    - Class: 114
+      Script: {instanceID: 11348}
+    - Class: 114
+      Script: {instanceID: 11388}
+    - Class: 114
+      Script: {instanceID: 11844}
+    - Class: 114
+      Script: {instanceID: 12284}
+    - Class: 114
+      Script: {instanceID: 12818}
+    - Class: 114
+      Script: {instanceID: 13218}
+    - Class: 114
+      Script: {instanceID: 66018}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    - Class: 241
+      Script: {instanceID: 0}
+    - Class: 243
+      Script: {instanceID: 0}
+    - Class: 245
+      Script: {instanceID: 0}
+    Assets/Scenes/006.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 11176}
+    - Class: 114
+      Script: {instanceID: 11348}
+    - Class: 114
+      Script: {instanceID: 11388}
+    - Class: 114
+      Script: {instanceID: 11624}
+    - Class: 114
+      Script: {instanceID: 11844}
+    - Class: 114
+      Script: {instanceID: 12284}
+    - Class: 114
+      Script: {instanceID: 12818}
+    - Class: 114
+      Script: {instanceID: 13218}
+    - Class: 114
+      Script: {instanceID: 76302}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -351,7 +477,7 @@ ScriptsOnlyBuild:
     className: AspectRatioFitter
   - hash:
       serializedVersion: 2
-      Hash: f1ab8e4302669b4f0d20aa48e7ed733b
+      Hash: c45551da6479459748482bd6caa5daea
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TitleController
@@ -363,7 +489,7 @@ ScriptsOnlyBuild:
     className: RectMask2D
   - hash:
       serializedVersion: 2
-      Hash: fff6762f84998209f28b63c42d29890e
+      Hash: 90110c37ed8e51a96d7d36173df46a1c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GlobalController
@@ -459,7 +585,7 @@ ScriptsOnlyBuild:
     className: AnalyticsEventTrackerEditor
   - hash:
       serializedVersion: 2
-      Hash: 3f2dd33ba971ad7005ab7b117fd01ecc
+      Hash: 078802470af5992331a66c72fb5ce8b9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RecipeController
@@ -507,7 +633,7 @@ ScriptsOnlyBuild:
     className: InputField
   - hash:
       serializedVersion: 2
-      Hash: 602e6412fbfbc70e49176a35849c2976
+      Hash: 21c86d70d58946f0aad47545725f09bc
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MainContoller004
@@ -675,7 +801,7 @@ ScriptsOnlyBuild:
     className: SignalEmitter
   - hash:
       serializedVersion: 2
-      Hash: a62ff2f9f5e1ccfe33e7658759b0b36e
+      Hash: 84712391dfcd5ea7e183c583f0a70f28
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CutSceneController
@@ -697,9 +823,23 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 84712391dfcd5ea7e183c583f0a70f28
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CutSceneContoller005
+  - hash:
+      serializedVersion: 2
+      Hash: 126c01d02985525e57b20d7964198bdb
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EndScreenController
   platform: 13
   scenePathNames:
   - Assets/Scenes/001.unity
   - Assets/Scenes/002.unity
   - Assets/Scenes/004.unity
-  playerPath: C:/Users/kevoh/Unity Projects/SpaceMoldMobile/SpaceMoldMobile/TestBuilds/build001.apk
+  - Assets/Scenes/005.unity
+  - Assets/Scenes/006.unity
+  playerPath: C:/Users/kevoh/Unity Projects/SpaceMoldMobile/SpaceMoldMobile/TestBuilds/build002.apk

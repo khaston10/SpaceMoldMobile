@@ -21,12 +21,17 @@ public class CutSceneController : MonoBehaviour
 
     #endregion
 
+    #region Variables MoldChar
+    public bool back1IsShowing;
+    private bool back2IsShowing;
+    private bool back3IsShowing;
+    #endregion
+
     public float timer;
 
     // Start is called before the first frame update
     void Start()
     {
-
         // Load data from previous scene.
         Load();
 
@@ -41,10 +46,20 @@ public class CutSceneController : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        
-        if (timer > 2) BackGroundImage.sprite = backgrounds[1];
-        if (timer > 4) BackGroundImage.sprite = backgrounds[2];
-        if (timer > 6) SceneManager.LoadScene(2);
+        if (timer > 14 && back1IsShowing)
+        {
+            BackGroundImage.sprite = backgrounds[1];
+            back1IsShowing = false;
+            back2IsShowing = true;
+        }
+        else if (timer > 31 && back2IsShowing) 
+        {
+            BackGroundImage.sprite = backgrounds[2];
+            back2IsShowing = false;
+            back3IsShowing = true;
+        } 
+
+        else if (timer > 45 && back3IsShowing) SceneManager.LoadScene(2);
     }
 
     public void Load()
@@ -52,5 +67,10 @@ public class CutSceneController : MonoBehaviour
         musicOn = GlobalController.Instance.musicOn;
         soundOn = GlobalController.Instance.soundOn;
         volume = GlobalController.Instance.volume;
+    }
+
+    public void ClickSkip()
+    {
+        SceneManager.LoadScene(2);
     }
 }

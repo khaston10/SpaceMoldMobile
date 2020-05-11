@@ -14,6 +14,8 @@ public class GlobalController : MonoBehaviour
     public bool[] moldsUnlocked = new bool[4];
     public bool[] debrisUnlocked = new bool[11];
     public bool[] compoundDebrisUnlocked = new bool[11];
+    // 0-10 Debris, 11-21 Compound Debris, 22-25 Mold;
+    public bool[] allDebrisUnlocked = new bool[26];
     public bool[] componentsUnlocked = new bool[6];
 
     #endregion

@@ -16,6 +16,8 @@ public class TitleController : MonoBehaviour
     public bool[] moldsUnlocked = new bool[4];
     public bool[] debrisUnlocked = new bool[11];
     public bool[] compoundDebrisUnlocked = new bool[11];
+    // 0-10 Debris, 11-21 Compound Debris, 22-25 Mold;
+    public bool[] allDebrisUnlocked = new bool[26];
     public bool[] componentsUnlocked = new bool[6];
 
     #endregion
@@ -48,6 +50,7 @@ public class TitleController : MonoBehaviour
         moldsUnlocked = GlobalController.Instance.moldsUnlocked;
         debrisUnlocked = GlobalController.Instance.debrisUnlocked;
         compoundDebrisUnlocked = GlobalController.Instance.compoundDebrisUnlocked;
+        allDebrisUnlocked = GlobalController.Instance.allDebrisUnlocked;
         componentsUnlocked = GlobalController.Instance.componentsUnlocked;
 
     }
@@ -61,6 +64,7 @@ public class TitleController : MonoBehaviour
         GlobalController.Instance.moldsUnlocked = moldsUnlocked;
         GlobalController.Instance.debrisUnlocked = debrisUnlocked;
         GlobalController.Instance.compoundDebrisUnlocked = compoundDebrisUnlocked;
+        GlobalController.Instance.allDebrisUnlocked = allDebrisUnlocked;
         GlobalController.Instance.componentsUnlocked = componentsUnlocked;
     }
 

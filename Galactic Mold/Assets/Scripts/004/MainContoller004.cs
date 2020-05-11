@@ -11,11 +11,14 @@ public class MainContoller004 : MonoBehaviour
     public bool musicOn;
     public bool soundOn;
     public float volume;
+    public bool playerHasStartedMovesForDay;
     public int day;
 
     public bool[] moldsUnlocked = new bool[4];
     public bool[] debrisUnlocked = new bool[11];
     public bool[] compoundDebrisUnlocked = new bool[11];
+    // 0-10 Debris, 11-21 Compound Debris, 22-25 Mold;
+    public bool[] allDebrisUnlocked = new bool[26];
     public bool[] componentsUnlocked = new bool[6];
 
 
@@ -32,10 +35,16 @@ public class MainContoller004 : MonoBehaviour
 
     #region Variables Panels - text
     public GameObject startOfDayPanel;
+    public Image startOfDayIconImage;
+    public Text startOfDayIconText;
     public GameObject buttonPanel;
     public GameObject SettingsPanel;
+    public GameObject menuPanel;
     public GameObject informationPanel;
     public GameObject recipePanel;
+    public GameObject newItemPanel;
+    public Image newItemImage;
+    public Text newItemText;
     public Text dayText;
     #endregion
 
@@ -47,6 +56,7 @@ public class MainContoller004 : MonoBehaviour
     public Image[] buttonPanelImages;
     public Sprite[] debrisSprites;
     public Sprite spaceMoldIcon;
+    public Sprite[] componentsSprites;
     #endregion
 
     #region Variables
@@ -89,6 +99,7 @@ public class MainContoller004 : MonoBehaviour
         moldsUnlocked = GlobalController.Instance.moldsUnlocked;
         debrisUnlocked = GlobalController.Instance.debrisUnlocked;
         compoundDebrisUnlocked = GlobalController.Instance.compoundDebrisUnlocked;
+        allDebrisUnlocked = GlobalController.Instance.allDebrisUnlocked;
         componentsUnlocked = GlobalController.Instance.componentsUnlocked;
     }
 
@@ -101,6 +112,7 @@ public class MainContoller004 : MonoBehaviour
         GlobalController.Instance.moldsUnlocked = moldsUnlocked;
         GlobalController.Instance.debrisUnlocked = debrisUnlocked;
         GlobalController.Instance.compoundDebrisUnlocked = compoundDebrisUnlocked;
+        GlobalController.Instance.allDebrisUnlocked = allDebrisUnlocked;
         GlobalController.Instance.componentsUnlocked = componentsUnlocked;
     }
 
@@ -179,18 +191,55 @@ public class MainContoller004 : MonoBehaviour
         startOfDayPanel.SetActive(false);
         buttonPanel.SetActive(true);
         informationPanel.SetActive(true);
+        menuPanel.SetActive(true);
         recipePanel.GetComponent<RecipeController>().SetButtonsActiveOnStart();
+        LoadButtonImagesAtStartOfDay();
+    }
+
+    public bool UnlockDebrisAtStartOfDay()
+    {
+        // Check to see if there is a new ingredent to unlock. 
+        for (int i = 0; i < 11; i++)
+        {
+            if (allDebrisUnlocked[i] == false)
+            {
+                Debug.Log("We have unlocked item.");
+                allDebrisUnlocked[i] = true;
+                startOfDayIconImage.sprite = debrisSprites[i];
+                startOfDayIconText.text = recipePanel.GetComponent<RecipeController>().materialArrayForSearching[i];
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public void ClickEndOfDay()
     {
+        // Check to see if game play is up. O days to impact.
+        if (day == 1)
+        {
+            Save();
+            SceneManager.LoadScene(3);
+        }
+
         // Set Day and close/open panels.
         day -= 1;
         UpdateTextObjects();
+        UnlockDebrisAtStartOfDay();
         buttonPanel.SetActive(false);
         startOfDayPanel.SetActive(true);
         informationPanel.SetActive(false);
+        menuPanel.SetActive(false);
+
+        // Toggle Player's ability to use shuffle.
+        playerHasStartedMovesForDay = false;
         
+    }
+
+    public void CloseNewItemPanel()
+    {
+        newItemPanel.SetActive(false);
     }
 
     #region Functions Button Panel
@@ -220,14 +269,53 @@ public class MainContoller004 : MonoBehaviour
                     GetButtonImageOnGamePanel(secondSelection).sprite = blank;
                 }
 
+                else if (GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name) == "HEAT SHIELD")
+                {
+                    NewComponentUnlocked(0, "Very handy for entering an atmosphere.");
+                }
+
+                else if (GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name) == "DEFENSE SYSTEM")
+                {
+                    NewComponentUnlocked(1, "Everyone should have a personal defense system!");
+                }
+
+                else if (GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name) == "ATTACK SYSTEM")
+                {
+                    NewComponentUnlocked(2, "The best offense is a good ATTACK SYSTEM");
+                }
+
+                else if (GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name) == "COOL FACTOR")
+                {
+                    NewComponentUnlocked(3, "When entering a new environment, it is important to make a good impression.");
+                }
+
+                else if (GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name) == "MOBILITY PACKAGE")
+                {
+                    NewComponentUnlocked(4, "Nothing fancy, but it should get you from A to B.");
+                }
+
+                else if (GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name) == "CLIMATE CONTROLLER")
+                {
+                    NewComponentUnlocked(5, "Keeps you cold in the summer and warm in the winter.");
+                }
+
                 else 
                 {
                     int temp = System.Array.IndexOf(recipePanel.GetComponent<RecipeController>().materialArrayForSearching, GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name));
                     GetButtonImageOnGamePanel(secondSelection).sprite = debrisSprites[temp];
+
+                    // Check to see if item is new!
+                    if (allDebrisUnlocked[temp] != true)
+                    {
+                        NewItemUnlocked(temp);
+                    }
                 } 
 
                 // Replace the image for first selection as black.
                 GetButtonImageOnGamePanel(firstSelection).sprite = blank;
+
+                // Disable players ability to shuffle after first move.
+                if (playerHasStartedMovesForDay == false) playerHasStartedMovesForDay = true; 
 
                 // Reset selections.
                 firstSelection = 55;
@@ -279,8 +367,8 @@ public class MainContoller004 : MonoBehaviour
         while (buttonsLeftToAssign > 0)
         {
 
-            int tempSprite = Random.Range(0, 11);
-            if (debrisUnlocked[tempSprite])
+            int tempSprite = Random.Range(0, 26);
+            if (allDebrisUnlocked[tempSprite])
             {
                 buttonPanelImages[buttonsLeftToAssign - 1].sprite = debrisSprites[tempSprite];
                 buttonsLeftToAssign -= 1;
@@ -296,11 +384,52 @@ public class MainContoller004 : MonoBehaviour
   
     }
 
+    public void ClickShuffle()
+    {
+        // Need to check if player has ability to shuffle.
+        if (playerHasStartedMovesForDay)
+        {
+            Debug.Log("Unable to Shuffle!");
+        }
+
+        else 
+        {
+            LoadButtonImagesAtStartOfDay();
+            click1Good.Play();
+        }
+        
+    }
+
     public string GetCombinationResult(string material1, string material2)
     {
         int tempIndex1 = System.Array.IndexOf(recipePanel.GetComponent<RecipeController>().materialArrayForSearching, material1);
         int tempIndex2 = System.Array.IndexOf(recipePanel.GetComponent<RecipeController>().materialArrayForSearching, material2);
         return recipePanel.GetComponent<RecipeController>().materialsCombinationArray[tempIndex1 + 1, tempIndex2 + 1];
+    }
+
+    public void NewItemUnlocked(int index)
+    {
+        Debug.Log("New Item Unlocked!");
+        allDebrisUnlocked[index] = true;
+        newItemImage.sprite = debrisSprites[index];
+        newItemText.text = recipePanel.GetComponent<RecipeController>().materialArrayForSearching[index];
+        newItemPanel.SetActive(true);
+
+        // Update the recipe book.
+        recipePanel.GetComponent<RecipeController>().SetButtonsActiveOnStart();
+
+    }
+
+    public void NewComponentUnlocked(int index, string description)
+    {
+        componentsUnlocked[index] = true;
+        newItemImage.sprite = componentsSprites[index];
+        newItemText.text = description;
+        newItemPanel.SetActive(true);
+
+        // Update the recipe book.
+        recipePanel.GetComponent<RecipeController>().SetButtonsActiveOnStart();
+
     }
 
     #endregion

@@ -17,6 +17,7 @@ public class RecipeController : MonoBehaviour
     public bool[] componentsUnlocked = new bool[6];
     // 0-10 Debris, 11-21 Compound Debris, 22-25 Mold;
     public bool[] allDebrisUnlocked = new bool[26];
+    public int difficulty; // 0 - Easy, 1 - Medium, 2 - Hard
     #endregion
 
     #region Variables Buttons

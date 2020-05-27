@@ -12,6 +12,7 @@ public class EndScreenController : MonoBehaviour
     public bool soundOn;
     public float volume;
     public int day;
+    public int difficulty; // 0 - Easy, 1 - Medium, 2 - Hard
 
     public bool[] moldsUnlocked = new bool[4];
     public bool[] debrisUnlocked = new bool[11];
@@ -58,6 +59,7 @@ public class EndScreenController : MonoBehaviour
         compoundDebrisUnlocked = GlobalController.Instance.compoundDebrisUnlocked;
         allDebrisUnlocked = GlobalController.Instance.allDebrisUnlocked;
         componentsUnlocked = GlobalController.Instance.componentsUnlocked;
+        difficulty = GlobalController.Instance.difficulty;
 
     }
 
@@ -72,6 +74,7 @@ public class EndScreenController : MonoBehaviour
         GlobalController.Instance.compoundDebrisUnlocked = compoundDebrisUnlocked;
         GlobalController.Instance.allDebrisUnlocked = allDebrisUnlocked;
         GlobalController.Instance.componentsUnlocked = componentsUnlocked;
+        GlobalController.Instance.difficulty = difficulty;
     }
 
     #endregion

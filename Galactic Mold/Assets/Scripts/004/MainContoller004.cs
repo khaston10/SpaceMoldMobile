@@ -13,6 +13,7 @@ public class MainContoller004 : MonoBehaviour
     public float volume;
     public bool playerHasStartedMovesForDay;
     public int day;
+    public int difficulty; // 0 - Easy, 1 - Medium, 2 - Hard
 
     public bool[] moldsUnlocked = new bool[4];
     public bool[] debrisUnlocked = new bool[11];
@@ -69,6 +70,8 @@ public class MainContoller004 : MonoBehaviour
     {
         Load();
 
+        LoadDifficulty();
+
         // Set text objects.
         UpdateTextObjects();
 
@@ -101,6 +104,7 @@ public class MainContoller004 : MonoBehaviour
         compoundDebrisUnlocked = GlobalController.Instance.compoundDebrisUnlocked;
         allDebrisUnlocked = GlobalController.Instance.allDebrisUnlocked;
         componentsUnlocked = GlobalController.Instance.componentsUnlocked;
+        difficulty = GlobalController.Instance.difficulty;
     }
 
     public void Save()
@@ -114,6 +118,27 @@ public class MainContoller004 : MonoBehaviour
         GlobalController.Instance.compoundDebrisUnlocked = compoundDebrisUnlocked;
         GlobalController.Instance.allDebrisUnlocked = allDebrisUnlocked;
         GlobalController.Instance.componentsUnlocked = componentsUnlocked;
+        GlobalController.Instance.difficulty = difficulty;
+    }
+
+    public void LoadDifficulty()
+    {
+        if (difficulty == 0)
+        {
+            day = 20;
+        }
+
+        else if (difficulty == 1)
+        {
+            day = 15;
+        }
+
+        else if (difficulty == 2)
+        {
+            day = 10;
+        }
+
+        else Debug.Log("Difficulty Loaded Incorrectly");
     }
 
     #endregion

@@ -10,6 +10,7 @@ public class GlobalController : MonoBehaviour
     public bool soundOn;
     public float volume;
     public int day;
+    public int difficulty; // 0 - Easy, 1 - Medium, 2 - Hard
 
     public bool[] moldsUnlocked = new bool[4];
     public bool[] debrisUnlocked = new bool[11];

@@ -3,7 +3,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-
 public class TitleController : MonoBehaviour
 {
     #region Variables Stats
@@ -12,6 +11,7 @@ public class TitleController : MonoBehaviour
     public bool soundOn;
     public float volume;
     public int day;
+    public int difficulty; // 0 - Easy, 1 - Medium, 2 - Hard
 
     public bool[] moldsUnlocked = new bool[4];
     public bool[] debrisUnlocked = new bool[11];
@@ -32,6 +32,7 @@ public class TitleController : MonoBehaviour
     #region Variables
     public GameObject StartPanel;
     public GameObject SettingsPanel;
+    public Dropdown difficultyDropdown;
     #endregion
     void Start()
     {
@@ -52,6 +53,7 @@ public class TitleController : MonoBehaviour
         compoundDebrisUnlocked = GlobalController.Instance.compoundDebrisUnlocked;
         allDebrisUnlocked = GlobalController.Instance.allDebrisUnlocked;
         componentsUnlocked = GlobalController.Instance.componentsUnlocked;
+        difficulty = GlobalController.Instance.difficulty;
 
     }
 
@@ -66,6 +68,7 @@ public class TitleController : MonoBehaviour
         GlobalController.Instance.compoundDebrisUnlocked = compoundDebrisUnlocked;
         GlobalController.Instance.allDebrisUnlocked = allDebrisUnlocked;
         GlobalController.Instance.componentsUnlocked = componentsUnlocked;
+        GlobalController.Instance.difficulty = difficulty;
     }
 
     #endregion
@@ -127,5 +130,12 @@ public class TitleController : MonoBehaviour
         mainMixer.SetFloat("MainVolume", volume);
     }
 
+    public void ChangeDifficulty()
+    {
+        Debug.Log(difficultyDropdown.value);
+        difficulty = difficultyDropdown.value;
+    }
+
     #endregion
 }
+  

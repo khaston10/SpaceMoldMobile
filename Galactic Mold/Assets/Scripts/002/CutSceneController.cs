@@ -22,9 +22,14 @@ public class CutSceneController : MonoBehaviour
     #endregion
 
     #region Variables MoldChar
-    public bool back1IsShowing;
+    public bool back0IsShowing;
+    private bool back1IsShowing;
     private bool back2IsShowing;
     private bool back3IsShowing;
+    public Animator anim;
+    public GameObject debrisPrefab;
+    private GameObject t;
+
     #endregion
 
     public float timer;
@@ -46,17 +51,31 @@ public class CutSceneController : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timer > 14 && back1IsShowing)
+        if (timer > 5 && back0IsShowing)
+        {
+            anim.Play("Morton2");
+            back0IsShowing = false;
+            back1IsShowing = true;
+        }
+
+        else if (timer > 14 && back1IsShowing)
         {
             BackGroundImage.sprite = backgrounds[1];
             back1IsShowing = false;
             back2IsShowing = true;
+            anim.Play("Morton3");
+            Debug.Log("Unfortunatley");
         }
+
+
         else if (timer > 31 && back2IsShowing) 
         {
             BackGroundImage.sprite = backgrounds[2];
             back2IsShowing = false;
             back3IsShowing = true;
+            t = Instantiate(debrisPrefab);
+            anim.Play("Morton1");
+            t.transform.position = Vector3.zero;
         } 
 
         else if (timer > 45 && back3IsShowing) SceneManager.LoadScene(2);

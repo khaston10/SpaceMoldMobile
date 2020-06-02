@@ -1116,7 +1116,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &165156690
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6947,6 +6947,7 @@ MonoBehaviour:
   compoundDebrisUnlocked: 0000000000000000000000
   componentsUnlocked: 000000000000
   allDebrisUnlocked: 0000000000000000000000000000000000000000000000000000
+  difficulty: 0
   moldButtons:
   - {fileID: 1704071419}
   - {fileID: 440026305}
@@ -7289,7 +7290,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b4e11b5bca42dd8458d4cad3b9fe93d8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 412664ffd948fa543a8fd04f92c02ad5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8668,6 +8669,7 @@ MonoBehaviour:
   volume: 0
   playerHasStartedMovesForDay: 0
   day: 0
+  difficulty: 0
   moldsUnlocked: 00000000
   debrisUnlocked: 0000000000000000000000
   compoundDebrisUnlocked: 0000000000000000000000
@@ -10110,6 +10112,7 @@ MonoBehaviour:
   soundOn: 1
   volume: 1
   day: 0
+  difficulty: 0
   moldsUnlocked: 01000000
   debrisUnlocked: 0000000000000000000000
   compoundDebrisUnlocked: 0000000000000000000000

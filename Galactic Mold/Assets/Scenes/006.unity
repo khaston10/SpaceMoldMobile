@@ -2724,6 +2724,7 @@ MonoBehaviour:
   soundOn: 0
   volume: 0
   day: 0
+  difficulty: 0
   moldsUnlocked: 00000000
   debrisUnlocked: 0000000000000000000000
   compoundDebrisUnlocked: 0000000000000000000000
@@ -2751,7 +2752,7 @@ MonoBehaviour:
   - {fileID: 954518875}
   - {fileID: 769124718}
   componentSprites:
-  - {fileID: 21300000, guid: 4d6e3b1f15a88504890108d09f77e996, type: 3}
+  - {fileID: 21300000, guid: 607deba3526b6d64091ffe8a52c5ab3c, type: 3}
   - {fileID: 21300000, guid: 8f4942838c115394abefab3d14ebc2fb, type: 3}
   - {fileID: 21300000, guid: f9dfc78412c1de142b837c214c470ee5, type: 3}
   - {fileID: 21300000, guid: 8addcb1a14466784dbbc4fe3ab4ea8e6, type: 3}
@@ -2999,6 +3000,7 @@ MonoBehaviour:
   soundOn: 1
   volume: 0
   day: 10
+  difficulty: 0
   moldsUnlocked: 01000000
   debrisUnlocked: 0100000000000000000000
   compoundDebrisUnlocked: 0000000000000000000000

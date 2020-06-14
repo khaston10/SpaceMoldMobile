@@ -14,6 +14,7 @@ public class MainContoller004 : MonoBehaviour
     public bool playerHasStartedMovesForDay;
     public int day;
     public int difficulty; // 0 - Easy, 1 - Medium, 2 - Hard
+    private int wavePointsRequired;
 
     public bool[] moldsUnlocked = new bool[4];
     public bool[] debrisUnlocked = new bool[11];
@@ -38,6 +39,7 @@ public class MainContoller004 : MonoBehaviour
     public GameObject startOfDayPanel;
     public Image startOfDayIconImage;
     public Text startOfDayIconText;
+    public Text startOfDayTitleText;
     public GameObject buttonPanel;
     public GameObject SettingsPanel;
     public GameObject menuPanel;
@@ -47,6 +49,8 @@ public class MainContoller004 : MonoBehaviour
     public Image newItemImage;
     public Text newItemText;
     public Text dayText;
+    public Text wavePointsRequiredText;
+    public Button endOfDayButton;
     #endregion
 
     #region Variables Button Panel Buttons
@@ -58,6 +62,7 @@ public class MainContoller004 : MonoBehaviour
     public Sprite[] debrisSprites;
     public Sprite spaceMoldIcon;
     public Sprite[] componentsSprites;
+    public Image buttonSelector;
     #endregion
 
     #region Variables
@@ -126,16 +131,19 @@ public class MainContoller004 : MonoBehaviour
         if (difficulty == 0)
         {
             day = 20;
+            wavePointsRequired = 10;
         }
 
         else if (difficulty == 1)
         {
             day = 15;
+            wavePointsRequired = 15;
         }
 
         else if (difficulty == 2)
         {
             day = 10;
+            wavePointsRequired = 20;
         }
 
         else Debug.Log("Difficulty Loaded Incorrectly");
@@ -202,6 +210,7 @@ public class MainContoller004 : MonoBehaviour
     public void UpdateTextObjects()
     {
         dayText.text = day.ToString();
+        wavePointsRequiredText.text = wavePointsRequired.ToString();
     }
 
     public void ClickRecipeBook(bool turnOn)
@@ -219,6 +228,8 @@ public class MainContoller004 : MonoBehaviour
         menuPanel.SetActive(true);
         recipePanel.GetComponent<RecipeController>().SetButtonsActiveOnStart();
         LoadButtonImagesAtStartOfDay();
+
+        
     }
 
     public bool UnlockDebrisAtStartOfDay()
@@ -236,6 +247,9 @@ public class MainContoller004 : MonoBehaviour
             }
         }
 
+        startOfDayTitleText.text = "No New Debris";
+        startOfDayIconImage.sprite = blank;
+        startOfDayIconText.text = "";
         return false;
     }
 
@@ -248,6 +262,9 @@ public class MainContoller004 : MonoBehaviour
             SceneManager.LoadScene(3);
         }
 
+        // Set End of day button inactive.
+        endOfDayButton.gameObject.SetActive(false);
+
         // Set Day and close/open panels.
         day -= 1;
         UpdateTextObjects();
@@ -256,6 +273,12 @@ public class MainContoller004 : MonoBehaviour
         startOfDayPanel.SetActive(true);
         informationPanel.SetActive(false);
         menuPanel.SetActive(false);
+
+        // Reset Wave Points Required.
+        if (difficulty == 0) wavePointsRequired = 10;
+        else if (difficulty == 1) wavePointsRequired = 15;
+        else if (difficulty == 2) wavePointsRequired = 20;
+        UpdateTextObjects();
 
         // Toggle Player's ability to use shuffle.
         playerHasStartedMovesForDay = false;
@@ -276,17 +299,35 @@ public class MainContoller004 : MonoBehaviour
         {
             firstSelection = button;
             //Debug.Log("First Selection Set To: " + firstSelection.ToString());
+
+            // Move button selector image ontop of the first selection.
+            buttonSelector.gameObject.transform.position = GetButtonImageOnGamePanel(button).gameObject.transform.position; 
         }
         else if (secondSelection == 55)
         {
             secondSelection = button;
             //Debug.Log("Second Selection Set To: " + secondSelection.ToString());
 
-            // Check to see if the 2 buttons are next to eachother. If not, reset buttons.
-            if (Mathf.Abs(firstSelection - secondSelection) == 1 || Mathf.Abs(firstSelection - secondSelection) == 10)
+            // Check to see if the 2 buttons are next to eachother, and that the 2nd selection is not blank. If not, reset buttons.
+            if (Mathf.Abs(firstSelection - secondSelection) == 1 || Mathf.Abs(firstSelection - secondSelection) == 10 & GetButtonImageOnGamePanel(secondSelection).sprite.name != "UIMask")
             {
-                //Debug.Log("Buttons are next to eachother!");
                 Debug.Log(GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name));
+
+                // Check to see if combination is two of the same image, if the do then the player gets wave points.
+                if (GetButtonImageOnGamePanel(firstSelection).sprite.name == GetButtonImageOnGamePanel(secondSelection).sprite.name)
+                {
+                    if (wavePointsRequired > 0)
+                    {
+                        wavePointsRequired -= 5;
+                        UpdateTextObjects();
+
+                        if(wavePointsRequired <= 0 & endOfDayButton)
+                        {
+                            endOfDayButton.gameObject.SetActive(true);
+                        }
+                    }
+                   
+                }
 
                 // Place the image of the returned sprite on the second selection.
                 if (GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name) == "NA")
@@ -324,7 +365,7 @@ public class MainContoller004 : MonoBehaviour
                     NewComponentUnlocked(5, "Keeps you cold in the summer and warm in the winter.");
                 }
 
-                else 
+                else
                 {
                     int temp = System.Array.IndexOf(recipePanel.GetComponent<RecipeController>().materialArrayForSearching, GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name));
                     GetButtonImageOnGamePanel(secondSelection).sprite = debrisSprites[temp];
@@ -333,8 +374,22 @@ public class MainContoller004 : MonoBehaviour
                     if (allDebrisUnlocked[temp] != true)
                     {
                         NewItemUnlocked(temp);
+
+                        if (wavePointsRequired > 0)
+                        {
+                            wavePointsRequired -= 5;
+                            UpdateTextObjects();
+
+                            if (wavePointsRequired <= 0 & endOfDayButton)
+                            {
+                                endOfDayButton.gameObject.SetActive(true);
+                            }
+                        }
                     }
-                } 
+
+                }
+
+                
 
                 // Replace the image for first selection as black.
                 GetButtonImageOnGamePanel(firstSelection).sprite = blank;
@@ -345,6 +400,9 @@ public class MainContoller004 : MonoBehaviour
                 // Reset selections.
                 firstSelection = 55;
                 secondSelection = 55;
+
+                // Move the button selector image off screen.
+                buttonSelector.gameObject.transform.position = Vector3.one * 1000f;
                 
             }
 
@@ -356,6 +414,9 @@ public class MainContoller004 : MonoBehaviour
             // Reset buttons.
             firstSelection = 55;
             secondSelection = 55;
+
+            // Move the button selector image off screen.
+            buttonSelector.gameObject.transform.position = Vector3.one * 1000f;
         }
 
         else

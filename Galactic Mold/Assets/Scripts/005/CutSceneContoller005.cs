@@ -25,6 +25,9 @@ public class CutSceneContoller005 : MonoBehaviour
     public bool back1IsShowing;
     private bool back2IsShowing;
     private bool back3IsShowing;
+    public GameObject mortonPrefab;
+    public GameObject explosionPrefab;
+    private GameObject temp;
     #endregion
 
     public float timer;
@@ -51,6 +54,10 @@ public class CutSceneContoller005 : MonoBehaviour
             BackGroundImage.sprite = backgrounds[1];
             back1IsShowing = false;
             back2IsShowing = true;
+            Destroy(mortonPrefab);
+            temp = Instantiate(explosionPrefab);
+            var tempVector = new Vector3(4f, -3.5f, 0f);
+            temp.transform.position = tempVector;
         }
 
         else if (timer > 5 && back2IsShowing) SceneManager.LoadScene(4);

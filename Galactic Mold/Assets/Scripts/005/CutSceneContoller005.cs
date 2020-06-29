@@ -60,7 +60,7 @@ public class CutSceneContoller005 : MonoBehaviour
             temp.transform.position = tempVector;
         }
 
-        else if (timer > 5 && back2IsShowing) SceneManager.LoadScene(4);
+        else if (timer > 5 && back2IsShowing) SceneManager.LoadScene(5);
     }
 
     public void Load()

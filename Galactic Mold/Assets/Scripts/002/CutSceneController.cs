@@ -90,6 +90,6 @@ public class CutSceneController : MonoBehaviour
 
     public void ClickSkip()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
 }

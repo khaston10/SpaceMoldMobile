@@ -1812,7 +1812,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 25567012616397825, guid: 2abcbf08ff5c39642829c70bb841c715,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 99c6b58be10b29f46b0000999739ecf6, type: 3}
+  m_audioClip: {fileID: 8300000, guid: bddd1607270cd4e649f12c5dab902662, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -3477,7 +3477,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1288927440}
-        m_MethodName: ClickExitGame
+        m_MethodName: ClickMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

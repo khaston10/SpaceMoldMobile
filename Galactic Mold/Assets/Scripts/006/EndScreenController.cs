@@ -102,9 +102,14 @@ public class EndScreenController : MonoBehaviour
         }
 
         // Set % stats
-        for (int i = 0; i < componentsUnlocked.Length; i++)
+
+        if (componentsUnlocked[0])
         {
-            if (componentsUnlocked[i]) percentageInt += 10;
+            for (int i = 1; i < componentsUnlocked.Length; i++)
+  
+            {
+                if (componentsUnlocked[i]) percentageInt += 20;
+            }
         }
         percentageText.text = percentageInt.ToString();
 
@@ -128,6 +133,11 @@ public class EndScreenController : MonoBehaviour
     public void ClickExitGame()
     {
         Application.Quit();
+    }
+
+    public void ClickMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
 

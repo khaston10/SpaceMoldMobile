@@ -29,6 +29,7 @@ public class MainContoller004 : MonoBehaviour
     #region Variables Audio
     public AudioSource mainMusic;
     public AudioSource click1Good;
+    public AudioClip[] musicClips;
     public AudioMixer mainMixer;
     public Slider volumeSlider;
     public Toggle musicToggle;
@@ -162,6 +163,11 @@ public class MainContoller004 : MonoBehaviour
         SettingsPanel.SetActive(false);
     }
 
+    public void ClickMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
     public void SetTogglesOnStart()
     {
         if (musicOn == false) musicToggle.isOn = false;
@@ -229,6 +235,9 @@ public class MainContoller004 : MonoBehaviour
         recipePanel.GetComponent<RecipeController>().SetButtonsActiveOnStart();
         LoadButtonImagesAtStartOfDay();
 
+        // Set music to new song.
+        mainMusic.clip = musicClips[Random.Range(0, 5)];
+        mainMusic.Play();
         
     }
 
@@ -259,7 +268,7 @@ public class MainContoller004 : MonoBehaviour
         if (day == 1)
         {
             Save();
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene(4);
         }
 
         // Set End of day button inactive.
@@ -290,6 +299,8 @@ public class MainContoller004 : MonoBehaviour
         newItemPanel.SetActive(false);
     }
 
+    #endregion
+
     #region Functions Button Panel
 
     public void PushSelectButton(int button)
@@ -309,24 +320,17 @@ public class MainContoller004 : MonoBehaviour
             //Debug.Log("Second Selection Set To: " + secondSelection.ToString());
 
             // Check to see if the 2 buttons are next to eachother, and that the 2nd selection is not blank. If not, reset buttons.
-            if (Mathf.Abs(firstSelection - secondSelection) == 1 || Mathf.Abs(firstSelection - secondSelection) == 10 & GetButtonImageOnGamePanel(secondSelection).sprite.name != "UIMask")
+            if (
+                (Mathf.Abs(firstSelection - secondSelection) == 1 || Mathf.Abs(firstSelection - secondSelection) == 10 
+                || Mathf.Abs(firstSelection - secondSelection) == 11 || Mathf.Abs(firstSelection - secondSelection) == 9)
+                & GetButtonImageOnGamePanel(secondSelection).sprite.name != "UIMask")
             {
                 Debug.Log(GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name));
 
-                // Check to see if combination is two of the same image, if the do then the player gets wave points.
+                // Check to see if combination is two of the same image, if yes, the player gets wave points.
                 if (GetButtonImageOnGamePanel(firstSelection).sprite.name == GetButtonImageOnGamePanel(secondSelection).sprite.name)
                 {
-                    if (wavePointsRequired > 0)
-                    {
-                        wavePointsRequired -= 5;
-                        UpdateTextObjects();
-
-                        if(wavePointsRequired <= 0 & endOfDayButton)
-                        {
-                            endOfDayButton.gameObject.SetActive(true);
-                        }
-                    }
-                   
+                    AwardPlayerWavePoints();
                 }
 
                 // Place the image of the returned sprite on the second selection.
@@ -338,37 +342,51 @@ public class MainContoller004 : MonoBehaviour
                 else if (GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name) == "HEAT SHIELD")
                 {
                     NewComponentUnlocked(0, "Very handy for entering an atmosphere.");
+                    GetButtonImageOnGamePanel(secondSelection).sprite = blank;
+                    AwardPlayerWavePoints();
                 }
 
                 else if (GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name) == "DEFENSE SYSTEM")
                 {
                     NewComponentUnlocked(1, "Everyone should have a personal defense system!");
+                    GetButtonImageOnGamePanel(secondSelection).sprite = blank;
+                    AwardPlayerWavePoints();
                 }
 
                 else if (GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name) == "ATTACK SYSTEM")
                 {
                     NewComponentUnlocked(2, "The best offense is a good ATTACK SYSTEM");
+                    GetButtonImageOnGamePanel(secondSelection).sprite = blank;
+                    AwardPlayerWavePoints();
                 }
 
                 else if (GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name) == "COOL FACTOR")
                 {
                     NewComponentUnlocked(3, "When entering a new environment, it is important to make a good impression.");
+                    GetButtonImageOnGamePanel(secondSelection).sprite = blank;
+                    AwardPlayerWavePoints();
                 }
 
                 else if (GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name) == "MOBILITY PACKAGE")
                 {
                     NewComponentUnlocked(4, "Nothing fancy, but it should get you from A to B.");
+                    GetButtonImageOnGamePanel(secondSelection).sprite = blank;
+                    AwardPlayerWavePoints();
                 }
 
                 else if (GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name) == "CLIMATE CONTROLLER")
                 {
                     NewComponentUnlocked(5, "Keeps you cold in the summer and warm in the winter.");
+                    GetButtonImageOnGamePanel(secondSelection).sprite = blank;
+                    AwardPlayerWavePoints();
                 }
 
                 else
                 {
                     int temp = System.Array.IndexOf(recipePanel.GetComponent<RecipeController>().materialArrayForSearching, GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name));
                     GetButtonImageOnGamePanel(secondSelection).sprite = debrisSprites[temp];
+
+                    AwardPlayerWavePoints();
 
                     // Check to see if item is new!
                     if (allDebrisUnlocked[temp] != true)
@@ -422,6 +440,20 @@ public class MainContoller004 : MonoBehaviour
         else
         {
             Debug.Log("No More Space");
+        }
+    }
+
+    public void AwardPlayerWavePoints()
+    {
+        if (wavePointsRequired > 0)
+        {
+            wavePointsRequired -= 5;
+            UpdateTextObjects();
+
+            if (wavePointsRequired <= 0 & endOfDayButton)
+            {
+                endOfDayButton.gameObject.SetActive(true);
+            }
         }
     }
 
@@ -517,8 +549,6 @@ public class MainContoller004 : MonoBehaviour
         recipePanel.GetComponent<RecipeController>().SetButtonsActiveOnStart();
 
     }
-
-    #endregion
 
     #endregion
 

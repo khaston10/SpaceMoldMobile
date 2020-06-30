@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
+using System.Collections;
 
 public class MainContoller004 : MonoBehaviour
 {
@@ -29,6 +30,9 @@ public class MainContoller004 : MonoBehaviour
     #region Variables Audio
     public AudioSource mainMusic;
     public AudioSource click1Good;
+    public AudioSource create;
+    public AudioSource combine;
+    public AudioSource noMatch;
     public AudioClip[] musicClips;
     public AudioMixer mainMixer;
     public Slider volumeSlider;
@@ -67,7 +71,10 @@ public class MainContoller004 : MonoBehaviour
     #endregion
 
     #region Variables
-
+    public GameObject Exp1;
+    public GameObject Exp2;
+    public GameObject Exp3;
+    private GameObject tempExp;
     #endregion
 
 
@@ -88,6 +95,11 @@ public class MainContoller004 : MonoBehaviour
         volumeSlider.value = volume;
         mainMixer.SetFloat("MainVolume", volume);
         SetTogglesOnStart();
+
+        // Create temp explosion and hide it.
+        tempExp = Instantiate(Exp1);
+        tempExp.transform.position = Vector3.one * 300;
+
 
     }
 
@@ -336,7 +348,22 @@ public class MainContoller004 : MonoBehaviour
                 // Place the image of the returned sprite on the second selection.
                 if (GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name) == "NA")
                 {
+                    // Play the explosion effect.
+                    if (GetButtonImageOnGamePanel(secondSelection).sprite.name == GetButtonImageOnGamePanel(firstSelection).sprite.name)
+                    {
+                        PlayExplosion(GetButtonImageOnGamePanel(secondSelection).transform.position, 3);
+                        Debug.Log(GetButtonImageOnGamePanel(secondSelection).sprite.name);
+                        Debug.Log(GetButtonImageOnGamePanel(firstSelection).sprite.name);
+                    }
+                    else
+                    {
+                        noMatch.Play();
+                    }
+
                     GetButtonImageOnGamePanel(secondSelection).sprite = blank;
+
+                    
+                    
                 }
 
                 else if (GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name) == "HEAT SHIELD")
@@ -344,6 +371,8 @@ public class MainContoller004 : MonoBehaviour
                     NewComponentUnlocked(0, "Very handy for entering an atmosphere.");
                     GetButtonImageOnGamePanel(secondSelection).sprite = blank;
                     AwardPlayerWavePoints();
+                    // Play the explosion effect.
+                    PlayExplosion(GetButtonImageOnGamePanel(secondSelection).transform.position, 1);
                 }
 
                 else if (GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name) == "DEFENSE SYSTEM")
@@ -351,6 +380,8 @@ public class MainContoller004 : MonoBehaviour
                     NewComponentUnlocked(1, "Everyone should have a personal defense system!");
                     GetButtonImageOnGamePanel(secondSelection).sprite = blank;
                     AwardPlayerWavePoints();
+                    // Play the explosion effect.
+                    PlayExplosion(GetButtonImageOnGamePanel(secondSelection).transform.position, 1);
                 }
 
                 else if (GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name) == "ATTACK SYSTEM")
@@ -358,6 +389,8 @@ public class MainContoller004 : MonoBehaviour
                     NewComponentUnlocked(2, "The best offense is a good ATTACK SYSTEM");
                     GetButtonImageOnGamePanel(secondSelection).sprite = blank;
                     AwardPlayerWavePoints();
+                    // Play the explosion effect.
+                    PlayExplosion(GetButtonImageOnGamePanel(secondSelection).transform.position, 1);
                 }
 
                 else if (GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name) == "COOL FACTOR")
@@ -365,6 +398,8 @@ public class MainContoller004 : MonoBehaviour
                     NewComponentUnlocked(3, "When entering a new environment, it is important to make a good impression.");
                     GetButtonImageOnGamePanel(secondSelection).sprite = blank;
                     AwardPlayerWavePoints();
+                    // Play the explosion effect.
+                    PlayExplosion(GetButtonImageOnGamePanel(secondSelection).transform.position, 1);
                 }
 
                 else if (GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name) == "MOBILITY PACKAGE")
@@ -372,6 +407,8 @@ public class MainContoller004 : MonoBehaviour
                     NewComponentUnlocked(4, "Nothing fancy, but it should get you from A to B.");
                     GetButtonImageOnGamePanel(secondSelection).sprite = blank;
                     AwardPlayerWavePoints();
+                    // Play the explosion effect.
+                    PlayExplosion(GetButtonImageOnGamePanel(secondSelection).transform.position, 1);
                 }
 
                 else if (GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name) == "CLIMATE CONTROLLER")
@@ -379,6 +416,8 @@ public class MainContoller004 : MonoBehaviour
                     NewComponentUnlocked(5, "Keeps you cold in the summer and warm in the winter.");
                     GetButtonImageOnGamePanel(secondSelection).sprite = blank;
                     AwardPlayerWavePoints();
+                    // Play the explosion effect.
+                    PlayExplosion(GetButtonImageOnGamePanel(secondSelection).transform.position, 1);
                 }
 
                 else
@@ -387,6 +426,9 @@ public class MainContoller004 : MonoBehaviour
                     GetButtonImageOnGamePanel(secondSelection).sprite = debrisSprites[temp];
 
                     AwardPlayerWavePoints();
+
+                    // Play the explosion effect.
+                    PlayExplosion(GetButtonImageOnGamePanel(secondSelection).transform.position, 1);
 
                     // Check to see if item is new!
                     if (allDebrisUnlocked[temp] != true)
@@ -549,6 +591,28 @@ public class MainContoller004 : MonoBehaviour
         recipePanel.GetComponent<RecipeController>().SetButtonsActiveOnStart();
 
     }
+
+    public void PlayExplosion(Vector3 loc, int expType)
+    {
+        Destroy(tempExp);
+
+        if (expType == 1)
+        {
+            tempExp = Instantiate(Exp1);
+            create.Play();
+        }
+
+        else
+        {
+            tempExp = Instantiate(Exp3);
+            combine.Play();
+        }
+
+        tempExp.transform.position = loc;
+
+    }
+
+    
 
     #endregion
 

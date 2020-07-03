@@ -1684,7 +1684,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 1644401669834568210, guid: 2abcbf08ff5c39642829c70bb841c715,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 2c76d8961e696af42967f2161517719f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a7f40ac22facdf841846111134fb9382, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -2262,7 +2262,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 1644401669834568210, guid: 2abcbf08ff5c39642829c70bb841c715,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 928909d42b29b144899697408266dea8, type: 3}
+  m_audioClip: {fileID: 8300000, guid: af254806f80d9cb4dabc39b62de73485, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -4271,7 +4271,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Days To Impact:'
+  m_Text: 'Waves Remaining:'
 --- !u!222 &538298885
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8696,7 +8696,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 1644401669834568210, guid: 2abcbf08ff5c39642829c70bb841c715,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 3445a8b2782c4134985eb470cc656b10, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 7da886a070ddeee4ba6bc0fd415e462c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.4
   m_Pitch: 1
@@ -9509,7 +9509,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 1644401669834568210, guid: 2abcbf08ff5c39642829c70bb841c715,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 7da886a070ddeee4ba6bc0fd415e462c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3445a8b2782c4134985eb470cc656b10, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.4
   m_Pitch: 1
@@ -10008,7 +10008,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 1644401669834568210, guid: 2abcbf08ff5c39642829c70bb841c715,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: c50021b070daae648b1c444b143664b4, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 621e56c069fe179418a339bca4c58a63, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -11468,7 +11468,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: END DAY
+  m_Text: END WAVE
 --- !u!222 &1435283445
 CanvasRenderer:
   m_ObjectHideFlags: 0

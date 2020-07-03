@@ -73,6 +73,8 @@ public class TutorialController : MonoBehaviour
     public GameObject Exp2;
     public GameObject Exp3;
     private GameObject tempExp;
+    private GameObject tempExp2;
+    private bool showEndOfDayButton;
     #endregion
 
 
@@ -95,6 +97,14 @@ public class TutorialController : MonoBehaviour
         SetTogglesOnStart();
 
         PlayTutorialClip(0);
+
+        showEndOfDayButton = true;
+
+        // Create temp explosion and hide it.
+        tempExp = Instantiate(Exp1);
+        tempExp2 = Instantiate(Exp1);
+        tempExp.transform.position = Vector3.one * 300;
+        tempExp2.transform.position = Vector3.one * 300;
 
     }
 
@@ -172,7 +182,8 @@ public class TutorialController : MonoBehaviour
 
     public void ClickExitTutorial()
     {
-        SceneManager.LoadScene(3);
+        ResetUnlockedItems();
+        SceneManager.LoadScene(4);
     }
 
     public void SetTogglesOnStart()
@@ -299,6 +310,9 @@ public class TutorialController : MonoBehaviour
         // Play the correct audio clip.
         PlayTutorialClip(tutorialClip);
 
+        // Because we only want this button to show once in the tutorial we are putting a flag on it.
+        showEndOfDayButton = false;
+
     }
 
     public void CloseNewItemPanel()
@@ -351,7 +365,7 @@ public class TutorialController : MonoBehaviour
                     // Play the explosion effect.
                     if (GetButtonImageOnGamePanel(secondSelection).sprite.name == GetButtonImageOnGamePanel(firstSelection).sprite.name)
                     {
-                        PlayExplosion(GetButtonImageOnGamePanel(secondSelection).transform.position, 3);
+                        PlayExplosion(GetButtonImageOnGamePanel(secondSelection).transform.position, GetButtonImageOnGamePanel(firstSelection).transform.position, 3);
                         Debug.Log(GetButtonImageOnGamePanel(secondSelection).sprite.name);
                         Debug.Log(GetButtonImageOnGamePanel(firstSelection).sprite.name);
                     }
@@ -369,7 +383,7 @@ public class TutorialController : MonoBehaviour
                     GetButtonImageOnGamePanel(secondSelection).sprite = blank;
                     AwardPlayerWavePoints();
                     // Play the explosion effect.
-                    PlayExplosion(GetButtonImageOnGamePanel(secondSelection).transform.position, 1);
+                    PlayExplosion(GetButtonImageOnGamePanel(secondSelection).transform.position, GetButtonImageOnGamePanel(firstSelection).transform.position, 1);
                 }
 
                 else if (GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name) == "DEFENSE SYSTEM")
@@ -378,7 +392,7 @@ public class TutorialController : MonoBehaviour
                     GetButtonImageOnGamePanel(secondSelection).sprite = blank;
                     AwardPlayerWavePoints();
                     // Play the explosion effect.
-                    PlayExplosion(GetButtonImageOnGamePanel(secondSelection).transform.position, 1);
+                    PlayExplosion(GetButtonImageOnGamePanel(secondSelection).transform.position, GetButtonImageOnGamePanel(firstSelection).transform.position, 1);
                 }
 
                 else if (GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name) == "ATTACK SYSTEM")
@@ -387,7 +401,7 @@ public class TutorialController : MonoBehaviour
                     GetButtonImageOnGamePanel(secondSelection).sprite = blank;
                     AwardPlayerWavePoints();
                     // Play the explosion effect.
-                    PlayExplosion(GetButtonImageOnGamePanel(secondSelection).transform.position, 1);
+                    PlayExplosion(GetButtonImageOnGamePanel(secondSelection).transform.position, GetButtonImageOnGamePanel(firstSelection).transform.position, 1);
                 }
 
                 else if (GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name) == "COOL FACTOR")
@@ -396,7 +410,7 @@ public class TutorialController : MonoBehaviour
                     GetButtonImageOnGamePanel(secondSelection).sprite = blank;
                     AwardPlayerWavePoints();
                     // Play the explosion effect.
-                    PlayExplosion(GetButtonImageOnGamePanel(secondSelection).transform.position, 1);
+                    PlayExplosion(GetButtonImageOnGamePanel(secondSelection).transform.position, GetButtonImageOnGamePanel(firstSelection).transform.position, 1);
                 }
 
                 else if (GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name) == "MOBILITY PACKAGE")
@@ -405,7 +419,7 @@ public class TutorialController : MonoBehaviour
                     GetButtonImageOnGamePanel(secondSelection).sprite = blank;
                     AwardPlayerWavePoints();
                     // Play the explosion effect.
-                    PlayExplosion(GetButtonImageOnGamePanel(secondSelection).transform.position, 1);
+                    PlayExplosion(GetButtonImageOnGamePanel(secondSelection).transform.position, GetButtonImageOnGamePanel(firstSelection).transform.position, 1);
                 }
 
                 else if (GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name) == "CLIMATE CONTROLLER")
@@ -414,7 +428,7 @@ public class TutorialController : MonoBehaviour
                     GetButtonImageOnGamePanel(secondSelection).sprite = blank;
                     AwardPlayerWavePoints();
                     // Play the explosion effect.
-                    PlayExplosion(GetButtonImageOnGamePanel(secondSelection).transform.position, 1);
+                    PlayExplosion(GetButtonImageOnGamePanel(secondSelection).transform.position, GetButtonImageOnGamePanel(firstSelection).transform.position, 1);
                 }
 
                 else
@@ -425,7 +439,7 @@ public class TutorialController : MonoBehaviour
                     AwardPlayerWavePoints();
 
                     // Play the explosion effect.
-                    PlayExplosion(GetButtonImageOnGamePanel(secondSelection).transform.position, 1);
+                    PlayExplosion(GetButtonImageOnGamePanel(secondSelection).transform.position, GetButtonImageOnGamePanel(firstSelection).transform.position, 1);
 
                     // Check to see if item is new!
                     if (allDebrisUnlocked[temp] != true)
@@ -489,7 +503,7 @@ public class TutorialController : MonoBehaviour
             wavePointsRequired -= 5;
             UpdateTextObjects();
 
-            if (wavePointsRequired <= 0 & endOfDayButton)
+            if (wavePointsRequired <= 0 & endOfDayButton & showEndOfDayButton)
             {
                 endOfDayButton.gameObject.SetActive(true);
             }
@@ -606,23 +620,43 @@ public class TutorialController : MonoBehaviour
 
     }
 
-    public void PlayExplosion(Vector3 loc, int expType)
+    public void PlayExplosion(Vector3 loc1, Vector3 loc2, int expType)
     {
         Destroy(tempExp);
 
         if (expType == 1)
         {
-            tempExp = Instantiate(Exp1);
+            tempExp = Instantiate(Exp3);
             create.Play();
         }
 
         else
         {
-            tempExp = Instantiate(Exp3);
+            tempExp = Instantiate(Exp1);
+            tempExp2 = Instantiate(Exp1);
             combine.Play();
         }
 
-        tempExp.transform.position = loc;
+        tempExp.transform.position = loc1;
+        tempExp2.transform.position = loc2;
+
+    }
+
+    public void ResetUnlockedItems()
+    {
+        // Use this function to reset unlocked items. This can be needed when the player starts the game over,
+        // or when the player exits the tutorial.
+        for (int i = 3; i < allDebrisUnlocked.Length; i++)
+        {
+            allDebrisUnlocked[i] = false;
+        }
+
+        allDebrisUnlocked[22] = true;
+
+        for (int i = 0; i < componentsUnlocked.Length; i++)
+        {
+            componentsUnlocked[i] = false;
+        }
 
     }
 

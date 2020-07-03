@@ -157,8 +157,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -200, y: 100}
-  m_SizeDelta: {x: 300, y: 100}
+  m_AnchoredPosition: {x: -263, y: 209}
+  m_SizeDelta: {x: 500, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &119574911
 MonoBehaviour:
@@ -820,7 +820,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 70
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -868,6 +868,7 @@ MonoBehaviour:
   BackGroundImage: {fileID: 289011483}
   backgrounds:
   - {fileID: 21300000, guid: a42cbc25ceff3e94d9d4a497bee7f445, type: 3}
+  - {fileID: 21300000, guid: 83b1359cc82fd4c45b080d3ab9e7d41e, type: 3}
   - {fileID: 21300000, guid: e3b9af558218bc94b8008deeff2b75d9, type: 3}
   - {fileID: 21300000, guid: 52cac552c4440124b9c548040ed2cc9a, type: 3}
   mainMixer: {fileID: 24100000, guid: 2abcbf08ff5c39642829c70bb841c715, type: 2}

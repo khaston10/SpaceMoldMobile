@@ -54,13 +54,14 @@ public class CutSceneController : MonoBehaviour
         if (timer > 5 && back0IsShowing)
         {
             anim.Play("Morton2");
+            BackGroundImage.sprite = backgrounds[1];
             back0IsShowing = false;
             back1IsShowing = true;
         }
 
         else if (timer > 14 && back1IsShowing)
         {
-            BackGroundImage.sprite = backgrounds[1];
+            BackGroundImage.sprite = backgrounds[2];
             back1IsShowing = false;
             back2IsShowing = true;
             anim.Play("Morton3");
@@ -70,7 +71,7 @@ public class CutSceneController : MonoBehaviour
 
         else if (timer > 31 && back2IsShowing) 
         {
-            BackGroundImage.sprite = backgrounds[2];
+            BackGroundImage.sprite = backgrounds[3];
             back2IsShowing = false;
             back3IsShowing = true;
             t = Instantiate(debrisPrefab);
@@ -90,6 +91,6 @@ public class CutSceneController : MonoBehaviour
 
     public void ClickSkip()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(4);
     }
 }

@@ -15,6 +15,7 @@ public class CutSceneContoller005 : MonoBehaviour
     public AudioMixer mainMixer;
     public AudioSource music;
     public AudioSource clickGood1;
+    public AudioSource boom;
     public float volume;
     public bool soundOn;
     public bool musicOn;
@@ -58,9 +59,10 @@ public class CutSceneContoller005 : MonoBehaviour
             temp = Instantiate(explosionPrefab);
             var tempVector = new Vector3(4f, -3.5f, 0f);
             temp.transform.position = tempVector;
+            boom.Play();
         }
 
-        else if (timer > 5 && back2IsShowing) SceneManager.LoadScene(5);
+        else if (timer > 5 && back2IsShowing) SceneManager.LoadScene(7);
     }
 
     public void Load()
@@ -70,8 +72,5 @@ public class CutSceneContoller005 : MonoBehaviour
         volume = GlobalController.Instance.volume;
     }
 
-    public void ClickSkip()
-    {
-        SceneManager.LoadScene(4);
-    }
+
 }

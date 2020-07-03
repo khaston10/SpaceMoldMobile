@@ -4004,7 +4004,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Days To Impact:'
+  m_Text: 'Waves Remaining:'
 --- !u!222 &538298885
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5076,6 +5076,134 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 682201085}
   m_CullTransparentMesh: 0
+--- !u!1 &692511919
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 692511920}
+  - component: {fileID: 692511921}
+  m_Layer: 0
+  m_Name: Affirmatives
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &692511920
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 692511919}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.8335145, y: -0.25071466, z: 5.35382}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2079852652}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &692511921
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 692511919}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 1644401669834568210, guid: 2abcbf08ff5c39642829c70bb841c715,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: de764a92836913a4c9806f40506e8360, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 1
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &702244217
 GameObject:
   m_ObjectHideFlags: 0
@@ -5424,7 +5552,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Main Menu
+  m_Text: Give UP?
 --- !u!222 &741778224
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5654,7 +5782,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 1644401669834568210, guid: 2abcbf08ff5c39642829c70bb841c715,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 7da886a070ddeee4ba6bc0fd415e462c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3445a8b2782c4134985eb470cc656b10, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.4
   m_Pitch: 1
@@ -9197,6 +9325,26 @@ MonoBehaviour:
   create: {fileID: 1386939173}
   combine: {fileID: 809538663}
   noMatch: {fileID: 1724127936}
+  Affirmatives: {fileID: 692511921}
+  AffirmativeClips:
+  - {fileID: 8300000, guid: de764a92836913a4c9806f40506e8360, type: 3}
+  - {fileID: 8300000, guid: 0f4a8fd3056d91443bccc2ce01657503, type: 3}
+  - {fileID: 8300000, guid: e080e901ec403f9448addbd2b0b0b2cf, type: 3}
+  - {fileID: 8300000, guid: 490cc1bb3faf9604aa9c3b1339c1bfa7, type: 3}
+  - {fileID: 8300000, guid: 365d0ba8e3ad9284ea896f7835dc5b31, type: 3}
+  - {fileID: 8300000, guid: b2f0942433548df4b8a65c3120bcebff, type: 3}
+  - {fileID: 8300000, guid: 7bed89258a1e8264ebd3ca9bf7c05a1c, type: 3}
+  - {fileID: 8300000, guid: 48b759e276e66f04b899f0cdd5862f9d, type: 3}
+  - {fileID: 8300000, guid: 999a3fd6afccad349b4fcad01091a928, type: 3}
+  - {fileID: 8300000, guid: fbf0a8ff490e08c4aaab8de9f804b51f, type: 3}
+  - {fileID: 8300000, guid: 5b5fff37b001c4b40b7e224b2159d3e6, type: 3}
+  - {fileID: 8300000, guid: 7dee4f3173cda2f46b6995c3aac02ca9, type: 3}
+  - {fileID: 8300000, guid: 1daa1a835ff051b409d2880b3154a293, type: 3}
+  - {fileID: 8300000, guid: 264c5c4bf5edebb41a98a98034ffc967, type: 3}
+  - {fileID: 8300000, guid: dfadfa2008adac64a9958d52f4606f5e, type: 3}
+  - {fileID: 8300000, guid: a3e156e7e3a78ae45ba4f91d57b51419, type: 3}
+  - {fileID: 8300000, guid: 9627657f498fe294880e93948529756a, type: 3}
+  - {fileID: 8300000, guid: 1911911236999ef46b77e3bed1a3d206, type: 3}
   musicClips:
   - {fileID: 8300000, guid: 25e8fe10055bc491abd5984c425f35e8, type: 3}
   - {fileID: 8300000, guid: bddd1607270cd4e649f12c5dab902662, type: 3}
@@ -10194,7 +10342,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 1644401669834568210, guid: 2abcbf08ff5c39642829c70bb841c715,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 3445a8b2782c4134985eb470cc656b10, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 7da886a070ddeee4ba6bc0fd415e462c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.4
   m_Pitch: 1
@@ -13620,7 +13768,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.92941177}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -14741,6 +14889,7 @@ Transform:
   - {fileID: 1386939174}
   - {fileID: 809538662}
   - {fileID: 1724127935}
+  - {fileID: 692511920}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

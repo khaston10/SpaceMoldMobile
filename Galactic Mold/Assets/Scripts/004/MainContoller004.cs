@@ -23,6 +23,7 @@ public class MainContoller004 : MonoBehaviour
     // 0-10 Debris, 11-21 Compound Debris, 22-25 Mold;
     public bool[] allDebrisUnlocked = new bool[26];
     public bool[] componentsUnlocked = new bool[6];
+    public bool resetRecipeBook;
 
 
     #endregion
@@ -183,6 +184,8 @@ public class MainContoller004 : MonoBehaviour
     public void ClickMainMenu()
     {
         ResetUnlockedItems();
+        resetRecipeBook = false;
+        GlobalController.Instance.resetRecipeBook = resetRecipeBook;
         SceneManager.LoadScene(0);
     }
 
@@ -270,6 +273,11 @@ public class MainContoller004 : MonoBehaviour
                 allDebrisUnlocked[i] = true;
                 startOfDayIconImage.sprite = debrisSprites[i];
                 startOfDayIconText.text = recipePanel.GetComponent<RecipeController>().materialArrayForSearching[i];
+
+                // Unlock the recipe from the recipe book, and update.
+                recipePanel.GetComponent<RecipeController>().recipeBookUnlocked[i] = true;
+                recipePanel.GetComponent<RecipeController>().SetButtonsActiveOnStart();
+
                 return true;
             }
         }
@@ -587,7 +595,7 @@ public class MainContoller004 : MonoBehaviour
         newItemText.text = recipePanel.GetComponent<RecipeController>().materialArrayForSearching[index];
         newItemPanel.SetActive(true);
 
-        // Unlock the recipe from the recipe book and update.
+        // Unlock the recipe from the recipe book, and update.
         recipePanel.GetComponent<RecipeController>().recipeBookUnlocked[index] = true;
         recipePanel.GetComponent<RecipeController>().SetButtonsActiveOnStart();
 

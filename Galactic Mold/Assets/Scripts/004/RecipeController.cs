@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,12 +23,17 @@ public class RecipeController : MonoBehaviour
     public bool resetRecipeBook;
     #endregion
 
-    #region Variables Buttons
+    #region Variables Buttons & Images
     public Button[] moldButtons;
     public Button[] debrisButtons;
     public Button[] compositeButtons;
     public Button[] componentButtons;
     public Button[] allDebrisButtons;
+    public Image[] allUnkownImages;
+    public Image[] lockImages;
+    public Image ingredientsImage1;
+    public Image ingredientsImage2;
+    public Sprite blackSprite;
     #endregion
 
     #region Variables Dictionary Of Materials
@@ -142,7 +148,18 @@ public string[,] materialsCombinationArray = new string[27, 27] {
     {
         for (int i = 0; i < recipeBookUnlocked.Length; i++)
         {
-            if (recipeBookUnlocked[i]) allDebrisButtons[i].gameObject.SetActive(true);
+            if (recipeBookUnlocked[i]) 
+            {
+                allDebrisButtons[i].gameObject.SetActive(true);
+                allUnkownImages[i].gameObject.SetActive(false);
+
+                // Check to see if the item should display to the user it is locked.
+                // This would happen in the case that the item was previously unlocked and added to the recipe book.
+                if (!GameObject.Find("MainController").GetComponent<MainContoller004>().allDebrisUnlocked[i]) lockImages[i].gameObject.SetActive(true);
+                else lockImages[i].gameObject.SetActive(false);
+
+            }
+            
         }
 
         for (int i = 0; i < componentsUnlocked.Length; i++)
@@ -181,7 +198,7 @@ public string[,] materialsCombinationArray = new string[27, 27] {
         Materials.Add("SOLAR PANEL", "Convertes light into electricity! Cool");
         Materials.Add("SATELLITE DISH", "A good example of a paraboloid!");
         Materials.Add("PROPELLER", "What is a propeller doing out here?");
-        Materials.Add("RADIATED DUST", "Cool! Its glowing dirt.");
+        Materials.Add("RADIATED DUST", "Cool! It is glowing dirt.");
         Materials.Add("ACID", "Don’t get it on your face!");
         Materials.Add("FROZEN GOO", "The strange Goo has been frozen, cool…");
         Materials.Add("LASER", "Light amplification by stimulated emission of radiation");
@@ -204,10 +221,53 @@ public string[,] materialsCombinationArray = new string[27, 27] {
         Materials.Add("CLIMATE CONTROLLER", "Keeps you cold in the summer and warm in the winter.");
     }
 
-
     public void ClickRecipeButton(string button)
     {
         UpdateInformation(button + ": " + Materials[button]);
+
+        // Update the ingredients images so the player can refresh on what it take to make the item.
+
+        // Set up temp variables to store the column and row when I find the item in the material matrix.
+        int[] indicesRC = {0, 0 };
+
+        // Then loop throught the matrix until we find the item. Save the col and row variables each 
+        //time and break the loop when the item is found. No need to look in col or row 0 because we do 
+        //not want the item found there.
+        indicesRC = FindIngredients(button);
+
+        // Use the stores col and row variables to load the ingredients images.
+        if (indicesRC[0] != 0 && indicesRC[1] != 0)
+        {
+            ingredientsImage1.sprite = GameObject.Find("MainController").GetComponent<MainContoller004>().debrisSprites[indicesRC[0] - 1];
+            ingredientsImage2.sprite = GameObject.Find("MainController").GetComponent<MainContoller004>().debrisSprites[indicesRC[1] - 1];
+        }
+        else
+        {
+            ingredientsImage1.sprite = blackSprite;
+            ingredientsImage2.sprite = blackSprite;
+        }
+        
+    }
+
+    public int[] FindIngredients(string button)
+    {
+        int[] indicesRC = {0, 0};
+
+        for (int i = 1; i < 27; i++)
+        {
+            for (int j = 1; j < 27; j++)
+            {
+                if (materialsCombinationArray[i, j] == button)
+                {
+                    Debug.Log("Match Found");
+                    indicesRC[0] = i;
+                    indicesRC[1] = j;
+                    return indicesRC;
+                }
+            }
+        }
+
+        return indicesRC;
     }
 
 }

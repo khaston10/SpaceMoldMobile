@@ -19,6 +19,7 @@ public class TitleController : MonoBehaviour
     // 0-10 Debris, 11-21 Compound Debris, 22-25 Mold;
     public bool[] allDebrisUnlocked = new bool[26];
     public bool[] componentsUnlocked = new bool[6];
+    public bool resetRecipeBook;
 
     #endregion
 
@@ -33,6 +34,7 @@ public class TitleController : MonoBehaviour
     public GameObject StartPanel;
     public GameObject SettingsPanel;
     public Dropdown difficultyDropdown;
+    public GameObject StatsPanel;
     #endregion
     void Start()
     {
@@ -136,6 +138,33 @@ public class TitleController : MonoBehaviour
         difficulty = difficultyDropdown.value;
     }
 
+    public void ClickExitGame()
+    {
+        Application.Quit();
+    }
+
+    public void ClickStatsPanel()
+    {
+        StatsPanel.SetActive(true);
+        SettingsPanel.SetActive(false);
+    }
+
+    public void ClickCloseStatsPanel()
+    {
+        StartPanel.SetActive(true);
+        StatsPanel.SetActive(false);
+    }
+
+    public void ClickResetRecipeBook()
+    {
+        resetRecipeBook = true;
+        GlobalController.Instance.resetRecipeBook = resetRecipeBook;
+        StartPanel.SetActive(true);
+        StatsPanel.SetActive(false);
+    }
+
     #endregion
+
+    
 }
   

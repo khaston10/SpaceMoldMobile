@@ -105,7 +105,6 @@ public class MainContoller004 : MonoBehaviour
         tempExp.transform.position = Vector3.one * 300;
         tempExp2.transform.position = Vector3.one * 300;
 
-
     }
 
     // Update is called once per frame
@@ -166,6 +165,7 @@ public class MainContoller004 : MonoBehaviour
 
         else Debug.Log("Difficulty Loaded Incorrectly");
     }
+
 
     #endregion
 
@@ -587,7 +587,8 @@ public class MainContoller004 : MonoBehaviour
         newItemText.text = recipePanel.GetComponent<RecipeController>().materialArrayForSearching[index];
         newItemPanel.SetActive(true);
 
-        // Update the recipe book.
+        // Unlock the recipe from the recipe book and update.
+        recipePanel.GetComponent<RecipeController>().recipeBookUnlocked[index] = true;
         recipePanel.GetComponent<RecipeController>().SetButtonsActiveOnStart();
 
     }

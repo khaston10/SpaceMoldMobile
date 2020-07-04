@@ -106,6 +106,10 @@ public class TutorialController : MonoBehaviour
         tempExp.transform.position = Vector3.one * 300;
         tempExp2.transform.position = Vector3.one * 300;
 
+        // For tutorial we need to unlock goo and ice so it does not show up in the new debris slot.
+        allDebrisUnlocked[2] = true;
+        allDebrisUnlocked[3] = true;
+
     }
 
     // Update is called once per frame

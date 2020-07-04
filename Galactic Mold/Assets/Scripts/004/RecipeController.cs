@@ -16,8 +16,10 @@ public class RecipeController : MonoBehaviour
     public bool[] compoundDebrisUnlocked = new bool[11];
     public bool[] componentsUnlocked = new bool[6];
     // 0-10 Debris, 11-21 Compound Debris, 22-25 Mold;
-    public bool[] allDebrisUnlocked = new bool[26];
+    [SerializeField]
+    public bool[] recipeBookUnlocked = new bool[26];
     public int difficulty; // 0 - Easy, 1 - Medium, 2 - Hard
+    public bool resetRecipeBook;
     #endregion
 
     #region Variables Buttons
@@ -73,8 +75,23 @@ public string[,] materialsCombinationArray = new string[27, 27] {
     {
         Load();
         LoadDictionary();
-        SetButtonsActiveOnStart();
         ClickPanel(0);
+
+        // Check to see if the user selected to reset the recipe book,
+        if (resetRecipeBook)
+        {
+            Debug.Log("Recipe Book Needs to be reset");
+            ResetRecipeBook();
+            SetButtonsActiveOnStart();
+        }
+
+        // ... otherwise, load Recipe Book Prefs from players previous play throughs.
+        else
+        {
+            LoadRecipeBookPrefs();
+            SetButtonsActiveOnStart();
+        }
+        
     }
 
     // Update is called once per frame
@@ -88,15 +105,44 @@ public string[,] materialsCombinationArray = new string[27, 27] {
         moldsUnlocked = GlobalController.Instance.moldsUnlocked;
         debrisUnlocked = GlobalController.Instance.debrisUnlocked;
         compoundDebrisUnlocked = GlobalController.Instance.compoundDebrisUnlocked;
-        allDebrisUnlocked = GlobalController.Instance.allDebrisUnlocked;
+        recipeBookUnlocked = GlobalController.Instance.allDebrisUnlocked;
         componentsUnlocked = GlobalController.Instance.componentsUnlocked;
+        resetRecipeBook = GlobalController.Instance.resetRecipeBook;
+    }
+
+    public void SaveRecipeBookPrefs()
+    {
+        SaveSystem.SavePlayer(this);
+    }
+
+    public void LoadRecipeBookPrefs()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+        recipeBookUnlocked = data.allDebrisUnlocked;
+    }
+
+    public void ResetRecipeBook()
+    {
+        // Clear recipe book,
+        for (int i = 0; i < recipeBookUnlocked.Length; i++)
+        {
+            recipeBookUnlocked[i] = false;
+        }
+
+        // ... then load in Mold, Radiation, and Cosmic Dust.
+        recipeBookUnlocked[0] = true;
+        recipeBookUnlocked[1] = true;
+        recipeBookUnlocked[22] = true;
+
+        SaveRecipeBookPrefs();
+
     }
 
     public void SetButtonsActiveOnStart()
     {
-        for (int i = 0; i < allDebrisUnlocked.Length; i++)
+        for (int i = 0; i < recipeBookUnlocked.Length; i++)
         {
-            if (allDebrisUnlocked[i]) allDebrisButtons[i].gameObject.SetActive(true);
+            if (recipeBookUnlocked[i]) allDebrisButtons[i].gameObject.SetActive(true);
         }
 
         for (int i = 0; i < componentsUnlocked.Length; i++)

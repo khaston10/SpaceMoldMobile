@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class GlobalController : MonoBehaviour
 {
@@ -18,11 +19,14 @@ public class GlobalController : MonoBehaviour
     // 0-10 Debris, 11-21 Compound Debris, 22-25 Mold;
     public bool[] allDebrisUnlocked = new bool[26];
     public bool[] componentsUnlocked = new bool[6];
+    public bool resetRecipeBook;
 
     #endregion
 
+
     void Awake()
     {
+
         if (Instance == null)
         {
             DontDestroyOnLoad(gameObject);

@@ -38,6 +38,10 @@ public class EndScreenController : MonoBehaviour
     public Text percentageText;
     private int percentageInt;
     public Toggle survivedToggle;
+    private string[] rank = new string[] { "Deceased", "Dipstick", "Digbat", "Unremarkable", "Amateur", "Adequate", "Talented", "Skillful", "Master", "GALACTIC MOLD" };
+    public Text rankText;
+    private int rankInt;
+    public GameObject creditsPanel;
 
     #endregion
 
@@ -128,6 +132,20 @@ public class EndScreenController : MonoBehaviour
 
         Debug.Log((percentageInt % 10) + 1);
 
+        // Load rank.
+        if (difficulty == 0) rankInt = 0;
+        else if (difficulty == 1) rankInt = 1;
+        else rankInt = 2;
+
+        for (int i = 0; i < componentsUnlocked.Length; i++)
+        {
+            if (componentsUnlocked[i]) rankInt += 1;
+        }
+
+        if (componentsUnlocked[0] == false) rankInt = 0;
+
+        rankText.text = rank[rankInt];
+
     }
 
     public void ClickExitGame()
@@ -138,6 +156,11 @@ public class EndScreenController : MonoBehaviour
     public void ClickMainMenu()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void ClickCredits()
+    {
+        creditsPanel.SetActive(true);
     }
 
 

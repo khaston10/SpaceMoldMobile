@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
+using System.Collections;
 
 public class TutorialController : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class TutorialController : MonoBehaviour
     #region Variables Audio
     public AudioSource mainMusic;
     public AudioSource click1Good;
+    public AudioSource click1Bad;
     public AudioSource create;
     public AudioSource combine;
     public AudioSource noMatch;
@@ -77,6 +79,17 @@ public class TutorialController : MonoBehaviour
     private bool showEndOfDayButton;
     #endregion
 
+    #region Variables Tutorials Flags
+    private bool isRunning = false;
+
+    public bool onAudioClip1 = true;
+    public bool onAudioClip2 = false;
+    public bool playerOnPart1 = true;
+    public bool playerOnPart2 = false;
+    private int lengthOfAudioClip1 = 33;
+    private int lengthOfAudioClip2 = 11;
+
+    #endregion
 
     // Start is called before the first frame update
     void Start()
@@ -115,7 +128,7 @@ public class TutorialController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (!isRunning) StartCoroutine(ControlTutorial());
     }
 
     #region Functions - Save And Load Data
@@ -249,13 +262,21 @@ public class TutorialController : MonoBehaviour
 
     public void ClickStartOfDay()
     {
-        // Hide start of day panel and show button panel.
-        startOfDayPanel.SetActive(false);
-        buttonPanel.SetActive(true);
-        informationPanel.SetActive(true);
-        menuPanel.SetActive(true);
-        recipePanel.GetComponent<RecipeController>().SetButtonsActiveOnStart();
-        LoadButtonImagesAtStartOfDay();
+        if (onAudioClip2 == false)
+        {
+            // Hide start of day panel and show button panel.
+            startOfDayPanel.SetActive(false);
+            buttonPanel.SetActive(true);
+            informationPanel.SetActive(true);
+            menuPanel.SetActive(true);
+            LoadButtonImagesAtStartOfDay();
+
+            // Play the correct audio clip.
+            PlayTutorialClip(2);
+
+        }
+
+        else click1Bad.Play();
 
 
     }
@@ -270,7 +291,6 @@ public class TutorialController : MonoBehaviour
                 Debug.Log("We have unlocked item.");
                 allDebrisUnlocked[i] = true;
                 startOfDayIconImage.sprite = debrisSprites[i];
-                startOfDayIconText.text = recipePanel.GetComponent<RecipeController>().materialArrayForSearching[i];
                 return true;
             }
         }
@@ -283,40 +303,48 @@ public class TutorialController : MonoBehaviour
 
     public void ClickEndOfDay(int tutorialClip)
     {
-        // Check to see if game play is up. O days to impact.
-        if (day == 1)
+        if (onAudioClip1 == false)
         {
-            Save();
-            SceneManager.LoadScene(3);
+            // Set tutorial flag.
+            playerOnPart2 = true;
+            playerOnPart1 = false;
+
+            // Check to see if game play is up. O days to impact.
+            if (day == 1)
+            {
+                Save();
+                SceneManager.LoadScene(3);
+            }
+
+            // Set End of day button inactive.
+            endOfDayButton.gameObject.SetActive(false);
+
+            // Set Day and close/open panels.
+            day -= 1;
+            UpdateTextObjects();
+            UnlockDebrisAtStartOfDay();
+            buttonPanel.SetActive(false);
+            startOfDayPanel.SetActive(true);
+            informationPanel.SetActive(false);
+            menuPanel.SetActive(false);
+
+            // Reset Wave Points Required.
+            if (difficulty == 0) wavePointsRequired = 10;
+            else if (difficulty == 1) wavePointsRequired = 15;
+            else if (difficulty == 2) wavePointsRequired = 20;
+            UpdateTextObjects();
+
+            // Toggle Player's ability to use shuffle.
+            playerHasStartedMovesForDay = false;
+
+            // Play the correct audio clip.
+            PlayTutorialClip(tutorialClip);
+
+            // Because we only want this button to show once in the tutorial we are putting a flag on it.
+            showEndOfDayButton = false;
         }
 
-        // Set End of day button inactive.
-        endOfDayButton.gameObject.SetActive(false);
-
-        // Set Day and close/open panels.
-        day -= 1;
-        UpdateTextObjects();
-        UnlockDebrisAtStartOfDay();
-        buttonPanel.SetActive(false);
-        startOfDayPanel.SetActive(true);
-        informationPanel.SetActive(false);
-        menuPanel.SetActive(false);
-
-        // Reset Wave Points Required.
-        if (difficulty == 0) wavePointsRequired = 10;
-        else if (difficulty == 1) wavePointsRequired = 15;
-        else if (difficulty == 2) wavePointsRequired = 20;
-        UpdateTextObjects();
-
-        // Toggle Player's ability to use shuffle.
-        playerHasStartedMovesForDay = false;
-
-        // Play the correct audio clip.
-        PlayTutorialClip(tutorialClip);
-
-        // Because we only want this button to show once in the tutorial we are putting a flag on it.
-        showEndOfDayButton = false;
-
+        else click1Bad.Play();
     }
 
     public void CloseNewItemPanel()
@@ -329,14 +357,43 @@ public class TutorialController : MonoBehaviour
         TutClip[clipNumber].Play();
     }
 
+    IEnumerator ControlTutorial()
+    {
+        isRunning = true;
+
+        // Check to see which flag we are on and wait the appropriate amount of time.
+        if (onAudioClip1)
+        {
+            yield return new WaitForSeconds(lengthOfAudioClip1);
+            onAudioClip1 = false;
+            onAudioClip2 = true;
+        }
+        else if (onAudioClip2 && playerOnPart2)
+        {
+            yield return new WaitForSeconds(lengthOfAudioClip2);
+            onAudioClip2 = false;
+        }
+
+        else Debug.Log("Not timing");
+
+        isRunning = false;
+    }
+
     #endregion
 
     #region Functions Button Panel
 
     public void PushSelectButton(int button)
     {
+        // Check to see if the user has tried to select and empty button.
+        if (GetButtonImageOnGamePanel(button).sprite.name == "UIMask")
+        {
+            Debug.Log("Empty button has been selected.");
+        }
+
+
         // Check to see if first selection has been assigned.
-        if (firstSelection == 55)
+        else if (firstSelection == 55)
         {
             firstSelection = button;
             //Debug.Log("First Selection Set To: " + firstSelection.ToString());
@@ -348,6 +405,17 @@ public class TutorialController : MonoBehaviour
         {
             secondSelection = button;
             //Debug.Log("Second Selection Set To: " + secondSelection.ToString());
+
+            // Check to see if the user clicked the same button and is trying to deselect it.
+            if (secondSelection == firstSelection)
+            {
+                // Reset selections.
+                firstSelection = 55;
+                secondSelection = 55;
+
+                // Move the button selector image off screen.
+                buttonSelector.gameObject.transform.position = Vector3.one * 1000f;
+            }
 
             // Check to see if the 2 buttons are next to eachother, and that the 2nd selection is not blank. If not, reset buttons.
             if (
@@ -437,7 +505,7 @@ public class TutorialController : MonoBehaviour
 
                 else
                 {
-                    int temp = System.Array.IndexOf(recipePanel.GetComponent<RecipeController>().materialArrayForSearching, GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name));
+                    int temp = System.Array.IndexOf(recipePanel.GetComponent<RecipeContTut>().materialArrayForSearching, GetCombinationResult(GetButtonImageOnGamePanel(firstSelection).sprite.name, GetButtonImageOnGamePanel(secondSelection).sprite.name));
                     GetButtonImageOnGamePanel(secondSelection).sprite = debrisSprites[temp];
 
                     AwardPlayerWavePoints();
@@ -594,9 +662,9 @@ public class TutorialController : MonoBehaviour
 
     public string GetCombinationResult(string material1, string material2)
     {
-        int tempIndex1 = System.Array.IndexOf(recipePanel.GetComponent<RecipeController>().materialArrayForSearching, material1);
-        int tempIndex2 = System.Array.IndexOf(recipePanel.GetComponent<RecipeController>().materialArrayForSearching, material2);
-        return recipePanel.GetComponent<RecipeController>().materialsCombinationArray[tempIndex1 + 1, tempIndex2 + 1];
+        int tempIndex1 = System.Array.IndexOf(recipePanel.GetComponent<RecipeContTut>().materialArrayForSearching, material1);
+        int tempIndex2 = System.Array.IndexOf(recipePanel.GetComponent<RecipeContTut>().materialArrayForSearching, material2);
+        return recipePanel.GetComponent<RecipeContTut>().materialsCombinationArray[tempIndex1 + 1, tempIndex2 + 1];
     }
 
     public void NewItemUnlocked(int index)
@@ -604,11 +672,11 @@ public class TutorialController : MonoBehaviour
         Debug.Log("New Item Unlocked!");
         allDebrisUnlocked[index] = true;
         newItemImage.sprite = debrisSprites[index];
-        newItemText.text = recipePanel.GetComponent<RecipeController>().materialArrayForSearching[index];
+        newItemText.text = recipePanel.GetComponent<RecipeContTut>().materialArrayForSearching[index];
         newItemPanel.SetActive(true);
 
         // Update the recipe book.
-        recipePanel.GetComponent<RecipeController>().SetButtonsActiveOnStart();
+        recipePanel.GetComponent<RecipeContTut>().SetButtonsActiveOnStart();
 
     }
 
@@ -620,7 +688,7 @@ public class TutorialController : MonoBehaviour
         newItemPanel.SetActive(true);
 
         // Update the recipe book.
-        recipePanel.GetComponent<RecipeController>().SetButtonsActiveOnStart();
+        recipePanel.GetComponent<RecipeContTut>().SetButtonsActiveOnStart();
 
     }
 

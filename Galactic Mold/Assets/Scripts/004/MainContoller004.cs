@@ -243,7 +243,16 @@ public class MainContoller004 : MonoBehaviour
     public void ClickRecipeBook(bool turnOn)
     {
         if (turnOn) recipePanel.SetActive(true);
-        else recipePanel.SetActive(false);
+        else 
+        {
+
+            // Reset panel back to Mold Panel and reset images if ingredients to blank.
+            recipePanel.GetComponent<RecipeController>().ClickPanel(0);
+            recipePanel.GetComponent<RecipeController>().ingredientsImage1.sprite = blank;
+            recipePanel.GetComponent<RecipeController>().ingredientsImage2.sprite = blank;
+            recipePanel.SetActive(false);
+        }
+        
     }
 
     public void ClickStartOfDay()
@@ -331,11 +340,16 @@ public class MainContoller004 : MonoBehaviour
 
     public void PushSelectButton(int button) 
     {
+        // Check to see if the user has tried to select and empty button.
+        if (GetButtonImageOnGamePanel(button).sprite.name == "UIMask")
+        {
+            Debug.Log("Empty button has been selected.");
+        }
+
         // Check to see if first selection has been assigned.
-        if (firstSelection == 55) 
+        else if (firstSelection == 55) 
         {
             firstSelection = button;
-            //Debug.Log("First Selection Set To: " + firstSelection.ToString());
 
             // Move button selector image ontop of the first selection.
             buttonSelector.gameObject.transform.position = GetButtonImageOnGamePanel(button).gameObject.transform.position; 
@@ -345,8 +359,19 @@ public class MainContoller004 : MonoBehaviour
             secondSelection = button;
             //Debug.Log("Second Selection Set To: " + secondSelection.ToString());
 
+            // Check to see if the user clicked the same button and is trying to deselect it.
+            if (secondSelection == firstSelection)
+            {
+                // Reset selections.
+                firstSelection = 55;
+                secondSelection = 55;
+
+                // Move the button selector image off screen.
+                buttonSelector.gameObject.transform.position = Vector3.one * 1000f;
+            }
+
             // Check to see if the 2 buttons are next to eachother, and that the 2nd selection is not blank. If not, reset buttons.
-            if (
+            else if (
                 (Mathf.Abs(firstSelection - secondSelection) == 1 || Mathf.Abs(firstSelection - secondSelection) == 10 
                 || Mathf.Abs(firstSelection - secondSelection) == 11 || Mathf.Abs(firstSelection - secondSelection) == 9)
                 & GetButtonImageOnGamePanel(secondSelection).sprite.name != "UIMask")
@@ -609,6 +634,7 @@ public class MainContoller004 : MonoBehaviour
         newItemPanel.SetActive(true);
 
         // Update the recipe book.
+        recipePanel.GetComponent<RecipeController>().recipeBookComponentsUnlocked[index] = true;
         recipePanel.GetComponent<RecipeController>().SetButtonsActiveOnStart();
 
     }

@@ -155,12 +155,31 @@ public class EndScreenController : MonoBehaviour
 
     public void ClickMainMenu()
     {
+        ResetUnlockedItems();
         SceneManager.LoadScene(0);
     }
 
     public void ClickCredits()
     {
         creditsPanel.SetActive(true);
+    }
+
+    public void ResetUnlockedItems()
+    {
+        // Use this function to reset unlocked items. This can be needed when the player starts the game over,
+        // or when the player exits the tutorial.
+        for (int i = 3; i < allDebrisUnlocked.Length; i++)
+        {
+            allDebrisUnlocked[i] = false;
+        }
+
+        allDebrisUnlocked[22] = true;
+
+        for (int i = 0; i < componentsUnlocked.Length; i++)
+        {
+            componentsUnlocked[i] = false;
+        }
+
     }
 
 

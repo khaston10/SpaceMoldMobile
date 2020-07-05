@@ -15,7 +15,7 @@ public class RecipeController : MonoBehaviour
     public bool[] moldsUnlocked = new bool[4];
     public bool[] debrisUnlocked = new bool[11];
     public bool[] compoundDebrisUnlocked = new bool[11];
-    public bool[] componentsUnlocked = new bool[6];
+    public bool[] recipeBookComponentsUnlocked = new bool[6];
     // 0-10 Debris, 11-21 Compound Debris, 22-25 Mold;
     [SerializeField]
     public bool[] recipeBookUnlocked = new bool[26];
@@ -30,7 +30,9 @@ public class RecipeController : MonoBehaviour
     public Button[] componentButtons;
     public Button[] allDebrisButtons;
     public Image[] allUnkownImages;
+    public Image[] componentUnkownImages;
     public Image[] lockImages;
+    public Image[] componentLockImages;
     public Image ingredientsImage1;
     public Image ingredientsImage2;
     public Sprite blackSprite;
@@ -112,7 +114,7 @@ public string[,] materialsCombinationArray = new string[27, 27] {
         debrisUnlocked = GlobalController.Instance.debrisUnlocked;
         compoundDebrisUnlocked = GlobalController.Instance.compoundDebrisUnlocked;
         recipeBookUnlocked = GlobalController.Instance.allDebrisUnlocked;
-        componentsUnlocked = GlobalController.Instance.componentsUnlocked;
+        recipeBookComponentsUnlocked = GlobalController.Instance.componentsUnlocked;
         resetRecipeBook = GlobalController.Instance.resetRecipeBook;
     }
 
@@ -125,6 +127,7 @@ public string[,] materialsCombinationArray = new string[27, 27] {
     {
         PlayerData data = SaveSystem.LoadPlayer();
         recipeBookUnlocked = data.allDebrisUnlocked;
+        recipeBookComponentsUnlocked = data.componentsUnlocked;
     }
 
     public void ResetRecipeBook()
@@ -162,9 +165,19 @@ public string[,] materialsCombinationArray = new string[27, 27] {
             
         }
 
-        for (int i = 0; i < componentsUnlocked.Length; i++)
+        for (int i = 0; i < recipeBookComponentsUnlocked.Length; i++)
         {
-            if (componentsUnlocked[i]) componentButtons[i].gameObject.SetActive(true);
+            if (recipeBookComponentsUnlocked[i]) 
+            {
+                componentButtons[i].gameObject.SetActive(true);
+                componentUnkownImages[i].gameObject.SetActive(false);
+
+                // Check to see if the component should display to the user it is locked.
+                // This would happen in the case that the item was previously unlocked and added to the recipe book.
+                if (!GameObject.Find("MainController").GetComponent<MainContoller004>().componentsUnlocked[i]) componentLockImages[i].gameObject.SetActive(true);
+                else componentLockImages[i].gameObject.SetActive(false);
+            }
+            
         }
     }
 
@@ -176,8 +189,10 @@ public string[,] materialsCombinationArray = new string[27, 27] {
             else recipePanels[i].SetActive(false);
         }
 
-        // Clear the information on the screen.
+        // Clear the information on the screen and ingredients images.
         UpdateInformation("");
+        ingredientsImage1.sprite = blackSprite;
+        ingredientsImage2.sprite = blackSprite;
     }
 
     public void UpdateInformation(string info)
@@ -206,7 +221,7 @@ public string[,] materialsCombinationArray = new string[27, 27] {
         Materials.Add("MOUNTABLE DISH", "Maybe we can pick up MTV");
         Materials.Add("MOUNTABLE LENS", "Great, goo on a lens…");
         Materials.Add("GLASSES", "They maybe the wrong prescription but they sure are trending.");
-        Materials.Add("RECHARGEABLE BATTERY PACK", "Handy for powering home appliances.");
+        Materials.Add("RECHARGEABLE BATTERY", "Handy for powering home appliances.");
         Materials.Add("ACTIVE ROCKET ENGINE", "It is a rocket engine. Who doesn’t want a rocket engine?");
         Materials.Add("MOUNTABLE PROPELLER", "Hey, it can spin!");
         Materials.Add("SPACE MOLD", "Standard Space Mold, it is gooey, gummy and smells like space.");

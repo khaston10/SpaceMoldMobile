@@ -125,7 +125,7 @@ public string[,] materialsCombinationArray = new string[27, 27] {
 
     public void LoadRecipeBookPrefs()
     {
-        PlayerData data = SaveSystem.LoadPlayer();
+        PlayerData data = SaveSystem.LoadPlayer(this);
         recipeBookUnlocked = data.allDebrisUnlocked;
         recipeBookComponentsUnlocked = data.componentsUnlocked;
     }

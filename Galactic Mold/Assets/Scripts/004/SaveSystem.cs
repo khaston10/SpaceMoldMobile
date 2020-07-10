@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 
 public static class SaveSystem
 {
+
     public static void SavePlayer(RecipeController recipeController)
     {
         BinaryFormatter formatter = new BinaryFormatter();
@@ -18,7 +19,7 @@ public static class SaveSystem
         stream.Close();
     }
 
-    public static PlayerData LoadPlayer()
+    public static PlayerData LoadPlayer(RecipeController recipeController)
     {
         string path = Path.Combine(Application.persistentDataPath, "player.fun");
 
@@ -37,8 +38,9 @@ public static class SaveSystem
 
         else
         {
-            Debug.Log("No File Found");
-            return null;
+            PlayerData emptyData = new PlayerData(recipeController);
+
+            return emptyData;
         }
     }
 }

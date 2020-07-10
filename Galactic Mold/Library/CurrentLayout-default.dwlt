@@ -117,7 +117,7 @@ MonoBehaviour:
   m_MinSize: {x: 911, y: 442}
   m_MaxSize: {x: 22006, y: 10021}
   vertical: 0
-  controlID: 129
+  controlID: 16
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -190,8 +190,8 @@ MonoBehaviour:
     y: 233
     width: 1007
     height: 714
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -217,8 +217,8 @@ MonoBehaviour:
     y: 0
     width: 202
     height: 947
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -321,8 +321,8 @@ MonoBehaviour:
     y: 632
     width: 397
     height: 315
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 23}
   m_Panes:
   - {fileID: 23}
@@ -507,7 +507,7 @@ MonoBehaviour:
   m_Size:
     m_Target: 4.635488
     speed: 2
-    m_Value: 4.8539143
+    m_Value: 4.635488
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -833,9 +833,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 5c460000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 727cffffa47effffb87effff007fffff5488ffffce89ffff428fffff1c92ffffaa92fffff292fffffa92ffffd893ffff089affff509bffff2caafffff4aaffffe4adffffa8aefffff6aefffffeaeffffd6b0ffff00b2ffffe0b8ffff58baffff60baffff2cbbffffa2bbffff76bdfffff4befffffcbeffffaac1ffffcec6ffffb4ccffff12d0ffff62d9fffffedfffff12e0ffff90eeffff98eeffff10f0ffff6cf1ffff9ef2ffffa2f3ffffbcf4ffffd2f5ffff1cf7ffff54f8ffff6efbffffc25a0000b65e0000586c0000866c0000be6c00001a870000da890000908a00001a8b00007c990000c49a0000ba9c0000f4f800008e190100961a0100fe210100c22301005a250100b04c0100f84d01004e4e01001c840100648501005a870100d0e801005c020200ec1b02009e350200ca620200ae7a0200ca7a0200d47a02001a7b0200687b02007a7b0200a87b0200da7b0200f67b0200147c0200867c0200b07c02002c7d02003c7d0200647d02006e7d0200ce7d0200f07d02004c90020058910200fe9102000e92020036920200a2c60200acc90200d4d7020024d8020062d802009ad80200
+      m_ExpandedIDs: 02f8ffff16f8ffffaef8ffffb8f8ffffcaf8ffffd2f8ffffe4f8ffffeef8fffff8f8ffff00f9ffff6efbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -898,20 +898,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Scripts/004
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Scripts/004
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\kevoh\Unity Projects\SpaceMoldMobile\Galactic Mold
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 8a370000
-    m_LastClickedID: 14218
-    m_ExpandedIDs: 000000005437000056370000583700005a3700005c3700005e370000603700006237000064370000663700006837000000ca9a3b
+    m_SelectedIDs: 96370000
+    m_LastClickedID: 14230
+    m_ExpandedIDs: 0000000056370000583700005a3700005c3700005e37000060370000623700006437000066370000683700006a37000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -939,7 +939,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000005437000056370000583700005a3700005c3700005e3700006037000062370000643700006637000068370000
+    m_ExpandedIDs: 0000000056370000583700005a3700005c3700005e37000060370000623700006437000066370000683700006a370000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

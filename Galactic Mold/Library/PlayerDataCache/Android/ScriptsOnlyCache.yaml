@@ -7,6 +7,7 @@ ScriptsOnlyBuild:
     - EndScreenController
     - GlobalController
     - MainContoller004
+    - RecipeContTut
     - RecipeController
     - ScreenLoader
     - TitleController
@@ -86,15 +87,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12292}
     - Class: 114
-      Script: {instanceID: 12830}
+      Script: {instanceID: 12832}
     - Class: 114
-      Script: {instanceID: 13222}
+      Script: {instanceID: 13224}
     - Class: 114
-      Script: {instanceID: 13234}
+      Script: {instanceID: 13236}
     - Class: 114
-      Script: {instanceID: 13250}
+      Script: {instanceID: 13252}
     - Class: 114
-      Script: {instanceID: 13268}
+      Script: {instanceID: 13270}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -157,11 +158,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12292}
     - Class: 114
-      Script: {instanceID: 12830}
+      Script: {instanceID: 12832}
     - Class: 114
-      Script: {instanceID: 13234}
+      Script: {instanceID: 13236}
     - Class: 114
-      Script: {instanceID: 13254}
+      Script: {instanceID: 13256}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -226,17 +227,17 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11852}
     - Class: 114
-      Script: {instanceID: 12144}
-    - Class: 114
       Script: {instanceID: 12292}
     - Class: 114
-      Script: {instanceID: 12830}
+      Script: {instanceID: 12354}
     - Class: 114
-      Script: {instanceID: 13234}
+      Script: {instanceID: 12832}
     - Class: 114
-      Script: {instanceID: 13250}
+      Script: {instanceID: 13236}
     - Class: 114
-      Script: {instanceID: 13268}
+      Script: {instanceID: 13252}
+    - Class: 114
+      Script: {instanceID: 13270}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -303,15 +304,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12292}
     - Class: 114
-      Script: {instanceID: 12498}
+      Script: {instanceID: 12500}
     - Class: 114
-      Script: {instanceID: 12830}
+      Script: {instanceID: 12832}
     - Class: 114
-      Script: {instanceID: 13234}
+      Script: {instanceID: 13236}
     - Class: 114
-      Script: {instanceID: 13250}
+      Script: {instanceID: 13252}
     - Class: 114
-      Script: {instanceID: 13268}
+      Script: {instanceID: 13270}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -370,11 +371,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11852}
     - Class: 114
-      Script: {instanceID: 12830}
+      Script: {instanceID: 12832}
     - Class: 114
-      Script: {instanceID: 13096}
+      Script: {instanceID: 13098}
     - Class: 114
-      Script: {instanceID: 13234}
+      Script: {instanceID: 13236}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -437,15 +438,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12292}
     - Class: 114
-      Script: {instanceID: 12354}
+      Script: {instanceID: 12356}
     - Class: 114
-      Script: {instanceID: 12714}
+      Script: {instanceID: 12716}
     - Class: 114
-      Script: {instanceID: 12830}
+      Script: {instanceID: 12832}
     - Class: 114
-      Script: {instanceID: 13234}
+      Script: {instanceID: 13236}
     - Class: 114
-      Script: {instanceID: 13250}
+      Script: {instanceID: 13252}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -504,9 +505,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11852}
     - Class: 114
-      Script: {instanceID: 12830}
+      Script: {instanceID: 12832}
     - Class: 114
-      Script: {instanceID: 13234}
+      Script: {instanceID: 13236}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -557,9 +558,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11852}
     - Class: 114
-      Script: {instanceID: 12830}
+      Script: {instanceID: 12832}
     - Class: 114
-      Script: {instanceID: 13234}
+      Script: {instanceID: 13236}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -741,7 +742,7 @@ ScriptsOnlyBuild:
     className: AnimationPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: 081998262fb1c80318275f0a89fddccc
+      Hash: c0f3f3e1b7e39f208f34bbec3b717b92
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TutorialController
@@ -825,7 +826,7 @@ ScriptsOnlyBuild:
     className: AnalyticsEventTrackerEditor
   - hash:
       serializedVersion: 2
-      Hash: 323dff0f2071bac29a47ae2749bc36e1
+      Hash: f5724d9b46841c8ca6fd46235e65bebf
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RecipeController
@@ -861,6 +862,12 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
+      Hash: 5e844b30f6d9781d5dc6bdfcb7899044
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RecipeContTut
+  - hash:
+      serializedVersion: 2
       Hash: 6797b13734189b8ccd4de8e054361968
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -879,7 +886,7 @@ ScriptsOnlyBuild:
     className: InputField
   - hash:
       serializedVersion: 2
-      Hash: 436387e8cdd847ded8e4ee341d22bcdb
+      Hash: b929b8ebfd9761c3e20df47a687e7ad2
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MainContoller004
@@ -1091,4 +1098,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/004.unity
   - Assets/Scenes/005.unity
   - Assets/Scenes/006.unity
-  playerPath: C:/Users/kevoh/Unity Projects/SpaceMoldMobile/TestBuild007.apk
+  playerPath: C:/Users/kevoh/Unity Projects/SpaceMoldMobile/TestBuild009.apk
